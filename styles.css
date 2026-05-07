@@ -570,6 +570,101 @@ a {
   font-weight: 900;
 }
 
+.rp-detail {
+  margin-bottom: 14px;
+  padding: 18px;
+  border: 1px solid rgba(13, 124, 120, 0.22);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.72)),
+    rgba(13, 124, 120, 0.08);
+}
+
+.detail-status {
+  padding: 6px 9px;
+  border-radius: 8px;
+  color: var(--teal-dark);
+  background: rgba(13, 124, 120, 0.1);
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.detail-tags span {
+  padding: 6px 9px;
+  border-radius: 8px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.detail-summary {
+  margin: 14px 0;
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+.rp-detail blockquote {
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border-left: 4px solid var(--brass);
+  border-radius: 8px;
+  color: var(--ink);
+  background: rgba(180, 125, 43, 0.1);
+  line-height: 1.7;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 12px;
+}
+
+.detail-grid article {
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.detail-grid h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+.detail-grid ul,
+.detail-grid ol {
+  margin: 0;
+  padding-left: 19px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.detail-grid li + li {
+  margin-top: 7px;
+}
+
+.detail-actions {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scenario-card.active,
+.featured-rp.active {
+  outline: 2px solid rgba(13, 124, 120, 0.42);
+  outline-offset: 2px;
+}
+
 .scenario-card {
   min-height: 98px;
   padding: 14px;
@@ -774,6 +869,23 @@ a {
   line-height: 1.55;
 }
 
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  z-index: 10;
+  width: min(520px, calc(100vw - 32px));
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  color: #fff;
+  background: rgba(23, 33, 38, 0.92);
+  box-shadow: var(--shadow);
+  transform: translateX(-50%);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
 @media (max-width: 1180px) {
   .workspace {
     grid-template-columns: 96px minmax(0, 1fr);
@@ -871,6 +983,10 @@ a {
   }
 
   .fact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-grid {
     grid-template-columns: 1fr;
   }
 

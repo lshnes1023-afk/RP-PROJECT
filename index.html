@@ -22,23 +22,23 @@
         </a>
 
         <nav class="nav-list">
-          <button class="nav-item active" type="button" data-section="대시보드">
+          <button class="nav-item active" type="button" data-target="#top">
             <span class="nav-icon">D</span>
             <span>대시보드</span>
           </button>
-          <button class="nav-item" type="button" data-section="RP 라이브러리">
+          <button class="nav-item" type="button" data-target="#library">
             <span class="nav-icon">R</span>
             <span>RP 라이브러리</span>
           </button>
-          <button class="nav-item" type="button" data-section="공유 보드">
+          <button class="nav-item" type="button" data-target="#discussion">
             <span class="nav-icon">C</span>
             <span>공유 보드</span>
           </button>
-          <button class="nav-item" type="button" data-section="AI 연습실">
+          <button class="nav-item" type="button" data-target="#ai-practice">
             <span class="nav-icon">AI</span>
             <span>AI 연습실</span>
           </button>
-          <button class="nav-item" type="button" data-section="관리자">
+          <button class="nav-item" type="button" data-target="#upload">
             <span class="nav-icon">M</span>
             <span>관리자</span>
           </button>
@@ -58,8 +58,12 @@
             <input id="searchInput" type="search" placeholder="RP 제목, 태그, 상담 상황 검색" />
           </label>
           <div class="account-actions">
-            <button class="ghost-button" type="button">로그인</button>
-            <button class="primary-button" type="button">회원가입</button>
+            <button class="ghost-button notice-trigger" type="button" data-notice="로그인 기능은 다음 단계에서 Supabase Auth로 연결합니다.">
+              로그인
+            </button>
+            <button class="primary-button notice-trigger" type="button" data-notice="회원가입은 이메일/비밀번호와 구글 로그인을 우선 연결할 예정입니다.">
+              회원가입
+            </button>
           </div>
         </header>
 
@@ -124,6 +128,7 @@
 
             <article
               class="featured-rp"
+              data-rp-id="insurance-basics"
               data-title="보험이란 무엇일까요 보험 필요성 자산 리스크 건강 리스크 공동부담 원리"
             >
               <div class="featured-media">
@@ -164,11 +169,41 @@
                   <span>공동부담 원리</span>
                   <span>보장 필요성</span>
                 </div>
+                <button class="primary-button rp-open" type="button" data-rp-id="insurance-basics">
+                  상세 RP 열기
+                </button>
               </div>
             </article>
 
+            <section class="rp-detail" id="rpDetail" aria-live="polite">
+              <div class="section-head compact">
+                <div>
+                  <span>Selected RP</span>
+                  <h2 id="detailTitle">보험이란 무엇일까요?</h2>
+                </div>
+                <span class="detail-status" id="detailStatus">문서 기반 예시</span>
+              </div>
+              <div class="detail-tags" id="detailTags"></div>
+              <p class="detail-summary" id="detailSummary"></p>
+              <blockquote id="detailQuote"></blockquote>
+              <div class="detail-grid">
+                <article>
+                  <h3>핵심 팩트</h3>
+                  <ul id="detailFacts"></ul>
+                </article>
+                <article>
+                  <h3>RP 진행 흐름</h3>
+                  <ol id="detailFlow"></ol>
+                </article>
+              </div>
+              <div class="detail-actions">
+                <button class="secondary-button" type="button" id="sendToAi">AI 연습으로 보내기</button>
+                <button class="secondary-button" type="button" id="goDiscussion">의견 남기기</button>
+              </div>
+            </section>
+
             <div class="scenario-list" id="scenarioList">
-              <article class="scenario-card" data-title="신규 고객 니즈 환기 RP 보장 분석 중급">
+              <article class="scenario-card" data-rp-id="needs-discovery" data-title="신규 고객 니즈 환기 RP 보장 분석 중급">
                 <i class="accent teal"></i>
                 <div>
                   <div class="meta">
@@ -178,9 +213,9 @@
                   <h3>신규 고객 니즈 환기 RP</h3>
                   <p>토탈인스 교육팀 · 18분</p>
                 </div>
-                <button class="mini-button" type="button">열기</button>
+                <button class="mini-button rp-open" type="button" data-rp-id="needs-discovery">열기</button>
               </article>
-              <article class="scenario-card" data-title="거절 처리 3단계 스크립트 상담 전환 고급">
+              <article class="scenario-card" data-rp-id="objection-steps" data-title="거절 처리 3단계 스크립트 상담 전환 고급">
                 <i class="accent gold"></i>
                 <div>
                   <div class="meta">
@@ -190,9 +225,9 @@
                   <h3>거절 처리 3단계 스크립트</h3>
                   <p>강남본부 · 12분</p>
                 </div>
-                <button class="mini-button" type="button">열기</button>
+                <button class="mini-button rp-open" type="button" data-rp-id="objection-steps">열기</button>
               </article>
-              <article class="scenario-card" data-title="계약 전 최종 확인 콜 마감 상담 초급">
+              <article class="scenario-card" data-rp-id="final-check" data-title="계약 전 최종 확인 콜 마감 상담 초급">
                 <i class="accent blue"></i>
                 <div>
                   <div class="meta">
@@ -202,7 +237,7 @@
                   <h3>계약 전 최종 확인 콜</h3>
                   <p>토탈인스총괄 · 9분</p>
                 </div>
-                <button class="mini-button" type="button">열기</button>
+                <button class="mini-button rp-open" type="button" data-rp-id="final-check">열기</button>
               </article>
             </div>
           </section>
@@ -320,6 +355,7 @@
       </section>
     </main>
 
+    <div class="toast" id="toast" hidden></div>
     <script src="app.js"></script>
   </body>
 </html>
