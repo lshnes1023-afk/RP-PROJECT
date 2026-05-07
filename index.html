@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="(주)글로벌금융판매 토탈인스총괄을 위한 RP 교육, 공유, 의견, AI 연습 플랫폼"
+    />
+    <title>INSIGHT RP | Totalins Roleplay Intelligence</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="workspace">
+      <aside class="sidebar" aria-label="서비스 메뉴">
+        <a class="brand" href="#top" aria-label="INSIGHT RP 홈">
+          <span class="brand-mark">IR</span>
+          <span>
+            <small>(주)글로벌금융판매</small>
+            <strong>INSIGHT RP</strong>
+          </span>
+        </a>
+
+        <nav class="nav-list">
+          <button class="nav-item active" type="button" data-section="대시보드">
+            <span class="nav-icon">D</span>
+            <span>대시보드</span>
+          </button>
+          <button class="nav-item" type="button" data-section="RP 라이브러리">
+            <span class="nav-icon">R</span>
+            <span>RP 라이브러리</span>
+          </button>
+          <button class="nav-item" type="button" data-section="공유 보드">
+            <span class="nav-icon">C</span>
+            <span>공유 보드</span>
+          </button>
+          <button class="nav-item" type="button" data-section="AI 연습실">
+            <span class="nav-icon">AI</span>
+            <span>AI 연습실</span>
+          </button>
+          <button class="nav-item" type="button" data-section="관리자">
+            <span class="nav-icon">M</span>
+            <span>관리자</span>
+          </button>
+        </nav>
+
+        <section class="access-panel">
+          <span class="status-dot"></span>
+          <strong>토탈인스총괄 전용</strong>
+          <p>회원 권한, 자료 승인, 본부별 공개 범위를 기준으로 확장할 수 있습니다.</p>
+        </section>
+      </aside>
+
+      <section class="app" id="top">
+        <header class="topbar">
+          <label class="search-box">
+            <span>⌕</span>
+            <input id="searchInput" type="search" placeholder="RP 제목, 태그, 상담 상황 검색" />
+          </label>
+          <div class="account-actions">
+            <button class="ghost-button" type="button">로그인</button>
+            <button class="primary-button" type="button">회원가입</button>
+          </div>
+        </header>
+
+        <section class="hero">
+          <div class="hero-copy">
+            <span class="badge">Totalins Roleplay Intelligence</span>
+            <h1>좋은 상담을 조직의 자산으로 남기는 RP 플랫폼</h1>
+            <p>
+              RP를 올리고, 공유하고, 현장의 의견을 더하고, 추후 AI와 반복 연습하는
+              토탈인스총괄의 프리미엄 교육 워크스페이스입니다.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-button large" href="#upload">새 RP 등록</a>
+              <a class="secondary-button large" href="#ai-practice">AI 연습 미리보기</a>
+            </div>
+          </div>
+
+          <figure class="hero-visual">
+            <img
+              src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1400"
+              alt="상담 교육 미팅"
+            />
+            <figcaption>
+              <small>AI Coach Preview</small>
+              <strong>상담 흐름 분석 92점</strong>
+            </figcaption>
+          </figure>
+        </section>
+
+        <section class="metrics" aria-label="운영 지표">
+          <article>
+            <span>이번 주 업로드</span>
+            <strong>38</strong>
+            <em>+12%</em>
+          </article>
+          <article>
+            <span>공유 RP</span>
+            <strong>214</strong>
+            <em>+28</em>
+          </article>
+          <article>
+            <span>의견 댓글</span>
+            <strong>1,482</strong>
+            <em>+7%</em>
+          </article>
+          <article>
+            <span>완료 학습</span>
+            <strong>73%</strong>
+            <em>+5%</em>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <section class="surface wide" id="library">
+            <div class="section-head">
+              <div>
+                <span>Library</span>
+                <h2>추천 RP 시나리오</h2>
+              </div>
+              <button class="text-button" type="button" id="resetSearch">전체 보기 ↗</button>
+            </div>
+
+            <div class="scenario-list" id="scenarioList">
+              <article class="scenario-card" data-title="신규 고객 니즈 환기 RP 보장 분석 중급">
+                <i class="accent teal"></i>
+                <div>
+                  <div class="meta">
+                    <span>보장 분석</span>
+                    <span>중급</span>
+                  </div>
+                  <h3>신규 고객 니즈 환기 RP</h3>
+                  <p>토탈인스 교육팀 · 18분</p>
+                </div>
+                <button class="mini-button" type="button">열기</button>
+              </article>
+              <article class="scenario-card" data-title="거절 처리 3단계 스크립트 상담 전환 고급">
+                <i class="accent gold"></i>
+                <div>
+                  <div class="meta">
+                    <span>상담 전환</span>
+                    <span>고급</span>
+                  </div>
+                  <h3>거절 처리 3단계 스크립트</h3>
+                  <p>강남본부 · 12분</p>
+                </div>
+                <button class="mini-button" type="button">열기</button>
+              </article>
+              <article class="scenario-card" data-title="계약 전 최종 확인 콜 마감 상담 초급">
+                <i class="accent blue"></i>
+                <div>
+                  <div class="meta">
+                    <span>마감 상담</span>
+                    <span>초급</span>
+                  </div>
+                  <h3>계약 전 최종 확인 콜</h3>
+                  <p>토탈인스총괄 · 9분</p>
+                </div>
+                <button class="mini-button" type="button">열기</button>
+              </article>
+            </div>
+          </section>
+
+          <section class="surface" id="upload">
+            <div class="section-head compact">
+              <div>
+                <span>Upload</span>
+                <h2>빠른 RP 등록</h2>
+              </div>
+            </div>
+            <form class="upload-form" id="uploadForm">
+              <label>
+                <span>RP 제목</span>
+                <input id="rpTitle" required placeholder="예: 암보험 니즈 환기 RP" />
+              </label>
+              <label>
+                <span>분류</span>
+                <select id="rpType">
+                  <option>상담 스크립트</option>
+                  <option>거절 처리</option>
+                  <option>마감 상담</option>
+                  <option>AI 연습용</option>
+                </select>
+              </label>
+              <label>
+                <span>핵심 상황</span>
+                <textarea id="rpMemo" placeholder="고객 상황, 목표, 핵심 질문을 적어주세요."></textarea>
+              </label>
+              <button class="primary-button full" type="submit">임시 등록</button>
+              <p class="form-note" id="uploadNote">나중에 Supabase Storage와 연결해 파일 업로드를 붙입니다.</p>
+            </form>
+          </section>
+
+          <section class="surface" id="discussion">
+            <div class="section-head compact">
+              <div>
+                <span>Community</span>
+                <h2>의견 보드</h2>
+              </div>
+            </div>
+            <div class="discussion-list" id="discussionList">
+              <article>
+                <span class="pill">거절처리</span>
+                <h3>고객이 보험료 부담을 먼저 말할 때 첫 문장</h3>
+                <strong>24</strong>
+              </article>
+              <article>
+                <span class="pill">니즈분석</span>
+                <h3>30대 맞벌이 부부 상담에서 효과적인 질문 흐름</h3>
+                <strong>16</strong>
+              </article>
+              <article>
+                <span class="pill">AI연습</span>
+                <h3>AI RP 평가 기준에 꼭 넣고 싶은 항목</h3>
+                <strong>9</strong>
+              </article>
+            </div>
+            <form class="comment-form" id="commentForm">
+              <input id="commentInput" placeholder="새 의견 주제 추가" />
+              <button class="secondary-button" type="submit">등록</button>
+            </form>
+          </section>
+
+          <section class="surface ai-panel" id="ai-practice">
+            <div class="section-head compact">
+              <div>
+                <span>AI Lab</span>
+                <h2>AI RP 연습실</h2>
+              </div>
+            </div>
+            <div class="practice-stage">
+              <div class="voice-mark">AI</div>
+              <h3>상담 대화 리허설</h3>
+              <p>향후 AI가 고객 역할을 맡고, 질문 품질과 공감 표현, 마감 흐름을 평가합니다.</p>
+              <button class="secondary-button" type="button" id="practiceButton">연습 흐름 보기</button>
+            </div>
+            <div class="coach-feed" id="coachFeed" hidden>
+              <p><b>고객:</b> 보험료가 부담돼서 조금 더 생각해보고 싶어요.</p>
+              <p><b>AI 코치:</b> 바로 반박하기보다 부담의 이유를 구체화하는 질문이 좋습니다.</p>
+            </div>
+          </section>
+
+          <section class="surface wide">
+            <div class="section-head">
+              <div>
+                <span>Roadmap</span>
+                <h2>앞으로 붙일 핵심 기능</h2>
+              </div>
+            </div>
+            <div class="roadmap">
+              <article>
+                <span>01</span>
+                <h3>회원가입/로그인</h3>
+                <p>Supabase Auth로 이메일, 구글 로그인, 권한 관리를 연결합니다.</p>
+              </article>
+              <article>
+                <span>02</span>
+                <h3>RP 공유 승인</h3>
+                <p>관리자 승인, 본부별 공개 범위, 태그 검색을 구성합니다.</p>
+              </article>
+              <article>
+                <span>03</span>
+                <h3>댓글과 피드백</h3>
+                <p>현장의 개선 의견과 적용 사례를 RP별로 남깁니다.</p>
+              </article>
+              <article>
+                <span>04</span>
+                <h3>AI 상담 훈련</h3>
+                <p>AI 고객 역할, 음성 연습, 점수화, 코칭 리포트로 확장합니다.</p>
+              </article>
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
