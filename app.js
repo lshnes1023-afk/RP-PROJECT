@@ -28,8 +28,7 @@ const materialPoints = document.querySelector("#materialPoints");
 const materialSlides = document.querySelector("#materialSlides");
 const slideCount = document.querySelector("#slideCount");
 const lessonViewer = document.querySelector(".lesson-viewer");
-const lessonFrame = document.querySelector("#lessonFrame");
-const lessonOpenLink = document.querySelector("#lessonOpenLink");
+const lessonCanvas = document.querySelector("#lessonCanvas");
 const factCheckScore = document.querySelector("#factCheckScore");
 const factChecks = document.querySelector("#factChecks");
 const sendToAi = document.querySelector("#sendToAi");
@@ -55,11 +54,10 @@ let gptFallbackNoticeShown = false;
 const rpLibrary = {
   "insurance-basics": {
     title: "보험이란 무엇일까요?",
-    status: "문서 기반 예시",
+    status: "신규 제작 교육자료",
     tags: ["보험 기초", "고객 공감 도입", "초급", "자산/건강 리스크"],
     summary:
       "보험을 보이지 않는 약속으로 설명하고, 고객이 체감하기 쉬운 화재·질병 사례를 통해 보험의 필요성을 이해하도록 돕는 RP입니다.",
-    lessonUrl: "materials/insurance-basics.html",
     learningGoals: [
       "고객이 보험을 상품이 아니라 리스크 관리 장치로 이해하게 만든다.",
       "자산 리스크와 건강 리스크를 생활 사례로 구분해 설명한다.",
@@ -122,8 +120,92 @@ const rpLibrary = {
         },
       ],
     },
+    lesson: {
+      eyebrow: "보험 기초 교육 · 15분 강의안",
+      headline: "보험을 상품 설명이 아니라 가족 경제를 지키는 안전장치로 이해시키기",
+      lead:
+        "첨부 자료의 메시지를 바탕으로 새로 구성한 교육 화면입니다. 원문을 그대로 보여주지 않고, 신입 교육자가 바로 강의할 수 있도록 개념, 사례, 질문, RP 문장으로 다시 설계했습니다.",
+      chips: ["신입 교육", "고객 공감 도입", "자산/건강 리스크", "AI RP 연습 연동"],
+      conceptCards: [
+        {
+          label: "핵심 정의",
+          title: "보이지 않는 약속",
+          text: "보험은 지금 손에 쥐는 물건이 아니라, 큰 사고가 났을 때 경제적 충격을 줄여주는 약속입니다.",
+        },
+        {
+          label: "상담 전환",
+          title: "상품보다 먼저 리스크",
+          text: "보험료와 상품명으로 시작하면 방어적 반응이 커집니다. 먼저 고객이 감당하기 어려운 변수를 묻습니다.",
+        },
+        {
+          label: "마무리 문장",
+          title: "불행을 막는 것이 아니라 붕괴를 막는다",
+          text: "보험은 사고 자체를 막지 못하지만, 사고 이후 가족 경제가 무너지는 속도를 늦춥니다.",
+        },
+      ],
+      sections: [
+        {
+          kicker: "도입",
+          title: "고객의 첫 의문을 반박하지 않는다",
+          body:
+            "고객이 '보험이 꼭 필요한가요?'라고 말하면 바로 상품 설명으로 넘어가지 않습니다. 먼저 그 질문이 자연스럽다는 점을 인정해야 대화가 열립니다.",
+          examples: [
+            "맞습니다. 당장 눈에 보이는 물건이 아니다 보니 필요성을 잊기 쉽습니다.",
+            "그래서 오늘은 상품보다, 어떤 상황에서 큰돈이 필요한지부터 같이 보겠습니다.",
+          ],
+        },
+        {
+          kicker: "사례 1",
+          title: "자산 리스크는 한 번에 큰돈이 필요한 상황이다",
+          body:
+            "화재, 자연재해, 배상 책임처럼 발생 빈도는 낮아도 한 번 생기면 가계가 감당하기 어려운 복구 비용이 발생하는 상황을 보여줍니다.",
+          examples: ["집, 차량, 배상 책임처럼 생활 기반을 복구해야 하는 비용", "현금 흐름이 아닌 목돈 리스크로 설명"],
+        },
+        {
+          kicker: "사례 2",
+          title: "건강 리스크는 치료비와 생활비 공백이 동시에 온다",
+          body:
+            "암, 뇌혈관, 심장질환 같은 중대 질병은 병원비뿐 아니라 일을 쉬는 기간의 소득 공백과 가족 생활비 부담을 함께 만듭니다.",
+          examples: ["치료비보다 오래 남는 생활비 공백", "진단비를 가족 생활 유지 자금으로 설명"],
+        },
+      ],
+      diagram: {
+        title: "강의 흐름",
+        steps: [
+          { label: "01", title: "질문 인정", text: "보험 필요성에 대한 의문을 먼저 인정" },
+          { label: "02", title: "리스크 분류", text: "자산 리스크와 건강 리스크로 구분" },
+          { label: "03", title: "생활 사례", text: "화재, 중대 질병, 소득 공백 사례 제시" },
+          { label: "04", title: "상담 연결", text: "고객의 가족과 현금 흐름으로 질문 전환" },
+        ],
+      },
+      table: {
+        title: "자료화면 비교표",
+        columns: ["구분", "자산 리스크", "건강 리스크"],
+        rows: [
+          ["대표 상황", "화재, 자연재해, 배상 책임", "암, 뇌혈관, 심장질환"],
+          ["고객이 느끼는 부담", "한 번에 필요한 큰 복구 비용", "치료비와 소득 공백의 동시 발생"],
+          ["상담 질문", "복구 비용을 현금으로 감당할 수 있을까요?", "일을 쉬는 동안 가족 생활비는 어떻게 준비할까요?"],
+        ],
+      },
+      practiceLab: {
+        title: "강사용 RP 예시",
+        setup: "고객이 보험 필요성에 의문을 갖는 상황에서, 상담자는 상품명 대신 리스크를 눈에 보이게 만들어야 합니다.",
+        lines: [
+          { speaker: "고객", text: "보험이 꼭 필요한 건가요? 당장 없어도 되는 것 같아요." },
+          { speaker: "상담자", text: "그렇게 느끼시는 게 자연스럽습니다. 보험은 물건처럼 바로 보이는 게 아니니까요." },
+          { speaker: "상담자", text: "대신 한 가지를 같이 생각해보면 좋겠습니다. 큰 병으로 일을 쉬게 되면 병원비보다 더 오래 부담되는 것은 무엇일까요?" },
+        ],
+        coachTip: "포인트: 고객을 설득하려 하지 말고, 고객이 스스로 리스크를 말하게 만드는 질문으로 연결합니다.",
+      },
+      checklist: [
+        "보험료보다 먼저 고객이 감당하기 어려운 상황을 묻는다.",
+        "자산 리스크와 건강 리스크를 한 화면에서 나누어 설명한다.",
+        "진단비는 병원비가 아니라 생활 유지 자금이라는 언어로 확장한다.",
+        "보장 금액, 보험료, 지급 여부는 실제 상품 기준 확인 전까지 단정하지 않는다.",
+      ],
+    },
     checks: [
-      { level: "확인", title: "문서 기반", text: "업로드한 Word 문서의 핵심 문장을 바탕으로 요약했습니다." },
+      { level: "확인", title: "신규 제작", text: "첨부 자료의 핵심 흐름을 바탕으로 강의형 교육자료 화면을 새로 구성했습니다." },
       { level: "주의", title: "보험료 예시", text: "월 보험료와 보장 금액은 상품, 연령, 담보, 직업, 고지사항에 따라 달라질 수 있습니다." },
       { level: "보강", title: "공식 근거", text: "다음 단계에서는 생명보험협회·손해보험협회 등 공식 자료 링크를 팩트체크에 연결할 수 있습니다." },
     ],
@@ -173,11 +255,10 @@ const rpLibrary = {
   },
   "life-vs-nonlife": {
     title: "생명보험 vs 손해보험",
-    status: "첨부 교육자료",
+    status: "신규 제작 교육자료",
     tags: ["보험 비교", "신입교육", "생명보험", "손해보험"],
     summary:
       "생명보험과 손해보험의 태생, 보상 방식, 고객이 느끼는 브랜드 온도 차이를 비교하며 두 영역의 차이와 융합 흐름을 교육하는 강의 자료입니다.",
-    lessonUrl: "materials/life-vs-nonlife.html",
     learningGoals: [
       "생명보험과 손해보험이 무엇을 지키기 위해 출발했는지 설명한다.",
       "정액 보상과 실손 보상의 차이를 고객 언어로 구분한다.",
@@ -238,8 +319,90 @@ const rpLibrary = {
         },
       ],
     },
+    lesson: {
+      eyebrow: "신입 교육 · 비교 강의안",
+      headline: "생명보험과 손해보험을 경쟁 구도가 아니라 출발점과 역할 차이로 설명하기",
+      lead:
+        "첨부 HTML의 메시지를 토대로 새로 제작한 비교형 교육자료입니다. 교육생이 두 보험을 외우는 것이 아니라, 고객에게 '무엇을 지키는 보험인지' 질문할 수 있도록 재구성했습니다.",
+      chips: ["생명보험", "손해보험", "정액/실손", "제3보험", "상담 질문"],
+      conceptCards: [
+        {
+          label: "생명보험",
+          title: "사람과 가족의 경제적 안전",
+          text: "사망, 생존, 중대 질병처럼 사람에게 생기는 위험과 남겨진 가족의 경제를 중심으로 설명합니다.",
+        },
+        {
+          label: "손해보험",
+          title: "사고 이후 비용과 손해의 복구",
+          text: "화재, 자동차, 배상 책임처럼 실제 사고로 발생한 비용과 재산상 손해를 복구하는 관점에서 출발합니다.",
+        },
+        {
+          label: "상담 적용",
+          title: "지키고 싶은 대상부터 묻기",
+          text: "고객이 원하는 보호 대상이 사람인지, 사고 비용인지, 둘 다인지 확인하면 설명이 쉬워집니다.",
+        },
+      ],
+      sections: [
+        {
+          kicker: "출발점",
+          title: "생명보험은 사람을 중심으로 출발했다",
+          body:
+            "생명보험은 고객 개인의 생존과 사망, 그리고 가족에게 남는 경제적 책임을 중심에 둡니다. 그래서 상담 언어도 가족, 약속, 생활 유지에 가깝습니다.",
+          examples: ["가장이 갑자기 부재할 때 남겨지는 생활비", "중대 질병 이후 가족의 경제 균형"],
+        },
+        {
+          kicker: "출발점",
+          title: "손해보험은 손해의 복구에서 출발했다",
+          body:
+            "손해보험은 사고 후 실제로 생긴 손해와 비용을 보전하는 관점이 강합니다. 고객에게는 신속한 처리, 수리, 배상, 복구의 언어로 설명하면 이해가 빠릅니다.",
+          examples: ["자동차 사고 수리비", "화재 이후 복구 비용", "타인에게 끼친 배상 책임"],
+        },
+        {
+          kicker: "융합",
+          title: "현재는 일부 영역이 겹치므로 약관 확인이 필수다",
+          body:
+            "제3보험 영역에서는 생명보험사와 손해보험사가 모두 취급하는 담보가 있어 경계가 겹칩니다. 그래서 현장 상담에서는 회사 구분보다 보장 구조와 지급 기준 확인이 우선입니다.",
+          examples: ["상해, 질병, 간병 등 일부 보장 영역", "상품별 약관과 담보별 지급 기준 확인"],
+        },
+      ],
+      diagram: {
+        title: "비교 설명 순서",
+        steps: [
+          { label: "01", title: "무엇을 지키나", text: "사람·가족인지, 사고 비용인지 구분" },
+          { label: "02", title: "어떻게 보상하나", text: "정액 보상과 실손 보상 구조 설명" },
+          { label: "03", title: "어떤 언어를 쓰나", text: "감성적 안전과 이성적 복구 언어 구분" },
+          { label: "04", title: "어디서 겹치나", text: "제3보험과 상품별 약관 확인 안내" },
+        ],
+      },
+      table: {
+        title: "생명보험 vs 손해보험 비교표",
+        columns: ["구분", "생명보험", "손해보험"],
+        rows: [
+          ["출발점", "사람의 생존·사망과 가족의 경제 안전", "재산상 손해와 사고 비용의 복구"],
+          ["대표 언어", "가족, 약속, 생활 유지, 장기 안정", "사고, 해결, 배상, 복구, 신속 처리"],
+          ["보상 이해", "약속한 금액을 지급하는 정액 보상 중심", "실제 손해를 보전하는 실손 보상 중심"],
+          ["상담 질문", "고객님이 지키고 싶은 가족의 생활은 무엇인가요?", "사고가 났을 때 복구해야 할 비용은 무엇인가요?"],
+        ],
+      },
+      practiceLab: {
+        title: "고객 설명 RP 예시",
+        setup: "고객이 두 보험의 차이를 묻는 상황에서 회사 구분보다 보호 대상과 보상 방식을 먼저 설명합니다.",
+        lines: [
+          { speaker: "고객", text: "생명보험이랑 손해보험은 결국 비슷한 거 아닌가요?" },
+          { speaker: "상담자", text: "비슷해 보이지만 출발점이 다릅니다. 생명보험은 사람과 가족의 생활을, 손해보험은 사고로 생긴 비용과 손해를 복구하는 데서 시작했습니다." },
+          { speaker: "상담자", text: "그래서 먼저 여쭤볼 것은 회사 이름이 아니라 고객님이 지키고 싶은 대상이 사람인지, 사고 비용인지입니다." },
+        ],
+        coachTip: "포인트: 생보와 손보를 우열로 비교하지 말고, 보호 대상과 보상 방식을 나누어 설명합니다.",
+      },
+      checklist: [
+        "생명보험은 사람과 가족의 경제 안전으로 설명한다.",
+        "손해보험은 사고 이후 비용과 손해 복구로 설명한다.",
+        "정액 보상과 실손 보상은 쉬운 사례로 구분한다.",
+        "제3보험 영역은 회사 구분보다 약관과 담보별 지급 기준 확인을 강조한다.",
+      ],
+    },
     checks: [
-      { level: "확인", title: "첨부 자료 기반", text: "생명vs손해.html 교육자료의 구조와 메시지를 라이브러리에 연결했습니다." },
+      { level: "확인", title: "신규 제작", text: "생명vs손해.html의 주제를 바탕으로 비교형 강의 화면과 RP 예시를 새로 구성했습니다." },
       { level: "주의", title: "상품별 차이", text: "실제 보장과 지급 방식은 상품 약관, 담보, 특약에 따라 달라집니다." },
       { level: "보강", title: "실무 적용", text: "향후 생보·손보 실제 상품 예시를 추가하면 신입 교육 완성도가 높아집니다." },
     ],
@@ -451,15 +614,218 @@ function renderChecks(checks, score) {
   });
 }
 
+function createTextElement(tagName, className, text) {
+  const element = document.createElement(tagName);
+
+  if (className) {
+    element.className = className;
+  }
+
+  if (text) {
+    element.textContent = text;
+  }
+
+  return element;
+}
+
+function createLessonList(items, className) {
+  const list = document.createElement("ul");
+  list.className = className;
+
+  items.forEach((item) => {
+    const row = document.createElement("li");
+    row.textContent = item;
+    list.append(row);
+  });
+
+  return list;
+}
+
+function getDefaultLesson(detail) {
+  return {
+    eyebrow: "RP 교육자료",
+    headline: `${detail.title} 실전 강의안`,
+    lead: detail.summary,
+    chips: detail.tags,
+    conceptCards: detail.facts.slice(0, 3).map((fact, index) => ({
+      label: `핵심 ${index + 1}`,
+      title: detail.flow[index] || detail.title,
+      text: fact,
+    })),
+    sections: detail.flow.slice(0, 3).map((flow, index) => ({
+      kicker: `Step ${index + 1}`,
+      title: flow,
+      body: detail.facts[index] || detail.summary,
+      examples: detail.keyQuestions?.slice(index, index + 1) || [],
+    })),
+    diagram: {
+      title: "교육 진행 순서",
+      steps: detail.flow.slice(0, 4).map((flow, index) => ({
+        label: String(index + 1).padStart(2, "0"),
+        title: flow.split(":")[0],
+        text: flow,
+      })),
+    },
+    practiceLab: {
+      title: "RP 예시",
+      setup: detail.customerProfile || detail.summary,
+      lines: detail.script,
+      coachTip: detail.instructorNote || "고객 반응을 인정한 뒤 다음 질문으로 연결합니다.",
+    },
+    checklist: detail.facts,
+  };
+}
+
 function renderLesson(detail) {
-  if (!detail.lessonUrl) {
+  if (!lessonCanvas || !lessonViewer) {
+    return;
+  }
+
+  const lesson = detail.lesson || getDefaultLesson(detail);
+
+  if (!lesson) {
     lessonViewer.hidden = true;
     return;
   }
 
   lessonViewer.hidden = false;
-  lessonFrame.src = detail.lessonUrl;
-  lessonOpenLink.href = detail.lessonUrl;
+  lessonCanvas.replaceChildren();
+
+  const hero = createTextElement("article", "lesson-hero-card");
+  const heroText = createTextElement("div", "lesson-hero-copy");
+  heroText.append(
+    createTextElement("span", "lesson-eyebrow", lesson.eyebrow),
+    createTextElement("h3", "", lesson.headline),
+    createTextElement("p", "", lesson.lead),
+  );
+
+  const chips = createTextElement("div", "lesson-chips");
+  (lesson.chips || []).forEach((chip) => {
+    chips.append(createTextElement("span", "", chip));
+  });
+  heroText.append(chips);
+
+  const heroPanel = createTextElement("div", "lesson-hero-panel");
+  heroPanel.append(
+    createTextElement("span", "", "Training View"),
+    createTextElement("strong", "", "첨부자료 기반 신규 제작"),
+    createTextElement("p", "", "원문을 그대로 보여주지 않고, 강의와 RP 연습에 맞게 재편집한 화면입니다."),
+  );
+
+  hero.append(heroText, heroPanel);
+  lessonCanvas.append(hero);
+
+  if (lesson.conceptCards?.length) {
+    const grid = createTextElement("div", "lesson-concepts");
+
+    lesson.conceptCards.forEach((card) => {
+      const item = createTextElement("article", "");
+      item.append(
+        createTextElement("span", "", card.label),
+        createTextElement("h4", "", card.title),
+        createTextElement("p", "", card.text),
+      );
+      grid.append(item);
+    });
+
+    lessonCanvas.append(grid);
+  }
+
+  if (lesson.sections?.length) {
+    const sections = createTextElement("div", "lesson-section-list");
+
+    lesson.sections.forEach((section) => {
+      const item = createTextElement("article", "lesson-section");
+      const body = createTextElement("div", "");
+      body.append(
+        createTextElement("span", "", section.kicker),
+        createTextElement("h4", "", section.title),
+        createTextElement("p", "", section.body),
+      );
+
+      const examples = createTextElement("div", "lesson-examples");
+      examples.append(createTextElement("strong", "", "현장 문장"));
+      examples.append(createLessonList(section.examples || [], ""));
+
+      item.append(body, examples);
+      sections.append(item);
+    });
+
+    lessonCanvas.append(sections);
+  }
+
+  if (lesson.diagram?.steps?.length) {
+    const flow = createTextElement("section", "lesson-flow-map");
+    flow.append(createTextElement("h4", "", lesson.diagram.title));
+
+    const steps = createTextElement("div", "");
+    lesson.diagram.steps.forEach((step) => {
+      const item = createTextElement("article", "");
+      item.append(
+        createTextElement("span", "", step.label),
+        createTextElement("strong", "", step.title),
+        createTextElement("p", "", step.text),
+      );
+      steps.append(item);
+    });
+
+    flow.append(steps);
+    lessonCanvas.append(flow);
+  }
+
+  if (lesson.table?.rows?.length) {
+    const tableWrap = createTextElement("section", "lesson-table-card");
+    tableWrap.append(createTextElement("h4", "", lesson.table.title));
+
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const headRow = document.createElement("tr");
+    lesson.table.columns.forEach((column) => {
+      headRow.append(createTextElement("th", "", column));
+    });
+    thead.append(headRow);
+
+    const tbody = document.createElement("tbody");
+    lesson.table.rows.forEach((row) => {
+      const tr = document.createElement("tr");
+      row.forEach((cell) => {
+        tr.append(createTextElement("td", "", cell));
+      });
+      tbody.append(tr);
+    });
+
+    table.append(thead, tbody);
+    tableWrap.append(table);
+    lessonCanvas.append(tableWrap);
+  }
+
+  if (lesson.practiceLab) {
+    const lab = createTextElement("section", "lesson-rp-lab");
+    const copy = createTextElement("div", "");
+    copy.append(
+      createTextElement("span", "", "Roleplay Practice"),
+      createTextElement("h4", "", lesson.practiceLab.title),
+      createTextElement("p", "", lesson.practiceLab.setup),
+    );
+
+    const lines = createTextElement("div", "lesson-rp-lines");
+    (lesson.practiceLab.lines || []).forEach((line) => {
+      const row = createTextElement("p", "");
+      row.append(createTextElement("strong", "", line.speaker), document.createTextNode(line.text));
+      lines.append(row);
+    });
+    lines.append(createTextElement("em", "", lesson.practiceLab.coachTip));
+
+    lab.append(copy, lines);
+    lessonCanvas.append(lab);
+  }
+
+  if (lesson.checklist?.length) {
+    const checklist = createTextElement("section", "lesson-checklist");
+    checklist.append(createTextElement("h4", "", "강사 체크리스트"));
+    checklist.append(createLessonList(lesson.checklist, ""));
+    lessonCanvas.append(checklist);
+  }
 }
 
 function setActiveRp(id) {
