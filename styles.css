@@ -629,6 +629,45 @@ a {
   line-height: 1.72;
 }
 
+.training-pack {
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.training-pack article {
+  min-height: 144px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.training-pack span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.training-pack p,
+.training-pack ul {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.58;
+}
+
+.training-pack ul {
+  padding-left: 18px;
+}
+
+.training-pack li + li {
+  margin-top: 6px;
+}
+
 .rp-detail blockquote {
   margin: 0 0 14px;
   padding: 14px 16px;
@@ -716,7 +755,8 @@ a {
 }
 
 .material-screen,
-.fact-check {
+.fact-check,
+.slide-deck {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--white);
@@ -794,6 +834,10 @@ a {
   padding: 16px;
 }
 
+.slide-deck {
+  padding: 16px;
+}
+
 .fact-check-head {
   display: flex;
   align-items: center;
@@ -815,11 +859,31 @@ a {
   gap: 9px;
 }
 
-#factChecks article {
+#factChecks article,
+#materialSlides article {
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface-soft);
+}
+
+#materialSlides {
+  display: grid;
+  gap: 9px;
+}
+
+#materialSlides strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+#materialSlides p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.58;
 }
 
 #factChecks span {
@@ -994,58 +1058,165 @@ a {
   gap: 8px;
 }
 
-.ai-panel {
+.practice-console {
   display: grid;
+  grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
+  gap: 14px;
 }
 
-.practice-stage {
-  min-height: 260px;
+.persona-panel {
+  padding: 16px;
+  border: 1px solid var(--line);
   border-radius: 8px;
   display: grid;
-  place-items: center;
-  align-content: center;
   gap: 12px;
-  text-align: center;
   background:
-    linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(3, 199, 90, 0.08)),
+    linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(3, 199, 90, 0.06)),
     var(--surface-soft);
 }
 
-.voice-mark {
-  width: 86px;
-  height: 86px;
-  border-radius: 50%;
+.persona-panel label {
   display: grid;
-  place-items: center;
-  color: #fff;
-  background: linear-gradient(135deg, var(--blue), var(--green));
-  box-shadow: 0 20px 38px rgba(37, 99, 235, 0.22);
+  gap: 7px;
+}
+
+.persona-panel label span {
+  color: var(--muted);
+  font-size: 13px;
   font-weight: 900;
 }
 
-.practice-stage p {
-  max-width: 320px;
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-.coach-feed {
-  margin-top: 12px;
-  padding: 14px;
+.persona-panel select,
+.practice-form input {
+  width: 100%;
+  height: 44px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.74);
+  color: var(--ink);
+  background: #fff;
+  outline: 0;
 }
 
-.coach-feed p {
-  margin: 0 0 8px;
+.persona-panel select {
+  padding: 0 12px;
+}
+
+.persona-panel p {
+  margin: 0;
   color: var(--muted);
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.56;
 }
 
-.coach-feed p:last-child {
-  margin-bottom: 0;
+.chat-panel {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.chat-head {
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--surface-soft);
+}
+
+.chat-head span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.chat-head h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.chat-head strong {
+  padding: 6px 9px;
+  border-radius: 8px;
+  color: var(--teal-dark);
+  background: rgba(3, 199, 90, 0.1);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.practice-messages {
+  height: 330px;
+  padding: 16px;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  overflow-y: auto;
+  background:
+    linear-gradient(180deg, rgba(249, 250, 251, 0.92), rgba(255, 255, 255, 0.96));
+}
+
+.message {
+  max-width: 82%;
+  display: grid;
+  gap: 5px;
+}
+
+.message span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.message p {
+  margin: 0;
+  padding: 12px 13px;
+  border-radius: 8px;
+  color: var(--ink);
+  line-height: 1.56;
+}
+
+.message.customer p {
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.message.advisor {
+  justify-self: end;
+}
+
+.message.advisor span {
+  text-align: right;
+}
+
+.message.advisor p {
+  color: #fff;
+  background: var(--blue);
+}
+
+.message.coach {
+  max-width: 100%;
+}
+
+.message.coach p {
+  color: var(--teal-dark);
+  background: rgba(3, 199, 90, 0.1);
+  border: 1px solid rgba(3, 199, 90, 0.18);
+}
+
+.practice-form {
+  padding: 12px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.practice-form input {
+  padding: 0 12px;
 }
 
 .roadmap {
@@ -1197,6 +1368,11 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .training-pack,
+  .practice-console {
+    grid-template-columns: 1fr;
+  }
+
   .scenario-card {
     grid-template-columns: 6px minmax(0, 1fr);
   }
@@ -1222,7 +1398,12 @@ a {
 
   .account-actions,
   .hero-actions,
-  .comment-form {
+  .comment-form,
+  .practice-form {
     grid-template-columns: 1fr;
+  }
+
+  .message {
+    max-width: 100%;
   }
 }

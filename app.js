@@ -6,8 +6,6 @@ const uploadForm = document.querySelector("#uploadForm");
 const uploadNote = document.querySelector("#uploadNote");
 const commentForm = document.querySelector("#commentForm");
 const discussionList = document.querySelector("#discussionList");
-const practiceButton = document.querySelector("#practiceButton");
-const coachFeed = document.querySelector("#coachFeed");
 const toast = document.querySelector("#toast");
 
 const detailTitle = document.querySelector("#detailTitle");
@@ -18,15 +16,33 @@ const detailQuote = document.querySelector("#detailQuote");
 const detailFacts = document.querySelector("#detailFacts");
 const detailFlow = document.querySelector("#detailFlow");
 const detailScript = document.querySelector("#detailScript");
+const detailGoals = document.querySelector("#detailGoals");
+const detailCustomer = document.querySelector("#detailCustomer");
+const detailQuestions = document.querySelector("#detailQuestions");
+const detailInstructor = document.querySelector("#detailInstructor");
 const materialImage = document.querySelector("#materialImage");
 const materialBadge = document.querySelector("#materialBadge");
 const materialTitle = document.querySelector("#materialTitle");
 const materialCaption = document.querySelector("#materialCaption");
 const materialPoints = document.querySelector("#materialPoints");
+const materialSlides = document.querySelector("#materialSlides");
+const slideCount = document.querySelector("#slideCount");
 const factCheckScore = document.querySelector("#factCheckScore");
 const factChecks = document.querySelector("#factChecks");
 const sendToAi = document.querySelector("#sendToAi");
 const goDiscussion = document.querySelector("#goDiscussion");
+const personaGender = document.querySelector("#personaGender");
+const personaAge = document.querySelector("#personaAge");
+const personaMood = document.querySelector("#personaMood");
+const startPractice = document.querySelector("#startPractice");
+const practiceTitle = document.querySelector("#practiceTitle");
+const personaSummary = document.querySelector("#personaSummary");
+const practiceMessages = document.querySelector("#practiceMessages");
+const practiceForm = document.querySelector("#practiceForm");
+const practiceInput = document.querySelector("#practiceInput");
+
+let activeRpId = "insurance-basics";
+let practiceTurn = 0;
 
 const rpLibrary = {
   "insurance-basics": {
@@ -35,6 +51,20 @@ const rpLibrary = {
     tags: ["보험 기초", "고객 공감 도입", "초급", "자산/건강 리스크"],
     summary:
       "보험을 보이지 않는 약속으로 설명하고, 고객이 체감하기 쉬운 화재·질병 사례를 통해 보험의 필요성을 이해하도록 돕는 RP입니다.",
+    learningGoals: [
+      "고객이 보험을 상품이 아니라 리스크 관리 장치로 이해하게 만든다.",
+      "자산 리스크와 건강 리스크를 생활 사례로 구분해 설명한다.",
+      "진단비와 보장의 목적을 병원비가 아닌 가족 생활 유지까지 확장해 설명한다.",
+    ],
+    customerProfile:
+      "보험의 필요성은 막연히 알지만, 당장 체감되는 혜택이 없어 가입 이유를 잊고 있는 초·중급 고객입니다.",
+    keyQuestions: [
+      "보험이 없으면 어떤 상황에서 가장 큰돈이 필요할까요?",
+      "아플 때 치료비와 생활비 중 무엇이 더 오래 부담될까요?",
+      "가족의 경제가 흔들리지 않게 막아야 할 최악의 변수는 무엇일까요?",
+    ],
+    instructorNote:
+      "이 RP는 상품 설명으로 바로 들어가지 않습니다. 먼저 고객의 의문을 인정하고, 화재와 질병 사례를 통해 보이지 않는 약속을 눈에 보이는 경제적 안전장치로 바꾸는 것이 핵심입니다.",
     quote:
       "보험은 배송되는 물건이 아니라 보이지 않는 약속을 사는 것입니다. 그래서 가입해놓고도 왜 필요했는지 잊기 쉽습니다.",
     facts: [
@@ -64,6 +94,24 @@ const rpLibrary = {
       caption:
         "고객이 보험을 상품이 아닌 리스크 관리 장치로 이해하도록, 자산 리스크와 건강 리스크를 한 화면에서 비교합니다.",
       points: ["자산 리스크: 화재, 자연재해, 배상 책임", "건강 리스크: 치료비와 소득 공백", "핵심 메시지: 가족 경제를 지키는 안전장치"],
+      slides: [
+        {
+          title: "1. 보험은 왜 보이지 않는 약속인가",
+          body: "보험은 지금 받는 물건이 아니라, 큰 변수가 생겼을 때 경제적 충격을 줄이는 약속입니다.",
+        },
+        {
+          title: "2. 자산 리스크 예시",
+          body: "화재, 자연재해, 배상 책임은 한 번 발생하면 수천만 원에서 수억 원의 복구 비용이 생길 수 있습니다.",
+        },
+        {
+          title: "3. 건강 리스크 예시",
+          body: "암, 뇌출혈, 급성 심근경색은 치료비뿐 아니라 소득 공백과 가족 생활비 문제를 동시에 만듭니다.",
+        },
+        {
+          title: "4. 상담 마무리 문장",
+          body: "보험은 불행을 막는 상품이 아니라, 불행이 왔을 때 가족 경제가 무너지지 않게 하는 장치입니다.",
+        },
+      ],
     },
     checks: [
       { level: "확인", title: "문서 기반", text: "업로드한 Word 문서의 핵심 문장을 바탕으로 요약했습니다." },
@@ -229,6 +277,36 @@ function renderTags(tags) {
   });
 }
 
+function getEducation(detail) {
+  return {
+    learningGoals: detail.learningGoals || [
+      `${detail.title}의 상담 목적과 고객 반응을 이해합니다.`,
+      "고객의 의문을 질문으로 풀어내는 흐름을 연습합니다.",
+      "실전 상담에서 바로 쓸 수 있는 핵심 문장을 익힙니다.",
+    ],
+    customerProfile:
+      detail.customerProfile ||
+      "상담 주제에는 관심이 있지만, 필요성·금액·결정 시점에 대해 아직 확신이 부족한 고객입니다.",
+    keyQuestions: detail.keyQuestions || [
+      "고객이 가장 걱정하는 지점은 무엇인가요?",
+      "고객의 말에서 확인해야 할 리스크는 무엇인가요?",
+      "다음 행동으로 자연스럽게 이어질 질문은 무엇인가요?",
+    ],
+    instructorNote:
+      detail.instructorNote ||
+      "학습자는 스크립트를 외우기보다 고객 반응을 인정하고, 다음 질문으로 연결하는 흐름을 익히는 데 집중합니다.",
+  };
+}
+
+function renderEducation(detail) {
+  const education = getEducation(detail);
+
+  replaceList(detailGoals, education.learningGoals);
+  detailCustomer.textContent = education.customerProfile;
+  replaceList(detailQuestions, education.keyQuestions);
+  detailInstructor.textContent = education.instructorNote;
+}
+
 function renderScript(lines) {
   detailScript.replaceChildren();
 
@@ -248,6 +326,26 @@ function renderMaterial(material) {
   materialTitle.textContent = material.title;
   materialCaption.textContent = material.caption;
   replaceList(materialPoints, material.points);
+  renderSlides(material.slides || material.points.map((point, index) => ({
+    title: `${index + 1}. 설명 포인트`,
+    body: point,
+  })));
+}
+
+function renderSlides(slides) {
+  materialSlides.replaceChildren();
+  slideCount.textContent = `${slides.length}장`;
+
+  slides.forEach((slide) => {
+    const item = document.createElement("article");
+    const title = document.createElement("strong");
+    const body = document.createElement("p");
+
+    title.textContent = slide.title;
+    body.textContent = slide.body;
+    item.append(title, body);
+    materialSlides.append(item);
+  });
 }
 
 function renderChecks(checks, score) {
@@ -287,6 +385,7 @@ function renderRpDetail(id, shouldScroll = true) {
   detailSummary.textContent = detail.summary;
   detailQuote.textContent = detail.quote;
   renderTags(detail.tags);
+  renderEducation(detail);
   replaceList(detailFacts, detail.facts);
   replaceList(detailFlow, detail.flow);
   renderScript(detail.script);
@@ -294,7 +393,9 @@ function renderRpDetail(id, shouldScroll = true) {
   renderChecks(detail.checks, detail.checkScore);
   setActiveRp(id);
 
+  activeRpId = id;
   sendToAi.dataset.rpId = id;
+  practiceTitle.textContent = detail.title;
 
   if (shouldScroll) {
     document.querySelector("#rpDetail")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -473,39 +574,145 @@ commentForm?.addEventListener("submit", (event) => {
   showToast("의견 주제가 추가되었습니다. 실제 저장은 DB 연결 후 반영됩니다.");
 });
 
-practiceButton?.addEventListener("click", () => {
-  const isHidden = coachFeed?.hasAttribute("hidden");
+function getPersona() {
+  const genderText = personaGender.value === "male" ? "남성" : "여성";
+  const ageText = `${personaAge.value}대`;
+  const moodMap = {
+    price: "보험료 부담",
+    doubt: "필요성 의문",
+    busy: "시간 부족",
+    family: "가족 상의",
+  };
 
-  if (isHidden) {
-    coachFeed.removeAttribute("hidden");
-    practiceButton.textContent = "연습 흐름 닫기";
-  } else {
-    coachFeed?.setAttribute("hidden", "");
-    practiceButton.textContent = "연습 흐름 보기";
+  return {
+    gender: personaGender.value,
+    genderText,
+    age: personaAge.value,
+    ageText,
+    mood: personaMood.value,
+    moodText: moodMap[personaMood.value],
+  };
+}
+
+function addPracticeMessage(role, text, meta = "") {
+  const row = document.createElement("article");
+  row.className = `message ${role}`;
+
+  const label = document.createElement("span");
+  label.textContent = meta || (role === "advisor" ? "상담자" : role === "coach" ? "AI 코치" : "고객");
+
+  const body = document.createElement("p");
+  body.textContent = text;
+
+  row.append(label, body);
+  practiceMessages.append(row);
+  practiceMessages.scrollTop = practiceMessages.scrollHeight;
+}
+
+function getOpeningMessage(detail, persona) {
+  const moodOpenings = {
+    price: "보험료가 부담돼서요. 지금 꼭 준비해야 하는 이유가 있을까요?",
+    doubt: "보험이 필요한 건 알겠는데, 당장 없어도 되는 것 같아서 망설여져요.",
+    busy: "설명은 좋은데 제가 시간이 많지 않아서 핵심만 듣고 싶어요.",
+    family: "혼자 결정하기는 어려워서 가족과 상의해보고 싶어요.",
+  };
+
+  return `${persona.ageText} ${persona.genderText} 고객입니다. ${moodOpenings[persona.mood]} (${detail.title})`;
+}
+
+function generateCustomerReply(userText, detail, persona) {
+  practiceTurn += 1;
+
+  const replySets = {
+    price: [
+      "말씀은 이해했는데, 그래도 매달 나가는 금액이 제일 걱정돼요. 꼭 이 정도까지 필요할까요?",
+      "그럼 우선순위를 정하면 보험료를 낮추면서도 중요한 부분은 남길 수 있다는 말씀이신가요?",
+      "조금 이해됐어요. 그러면 최소로 가져가야 하는 보장은 무엇부터 봐야 할까요?",
+    ],
+    doubt: [
+      "보이지 않는 약속이라는 설명은 이해됐어요. 그런데 실제로 저한테 가장 큰 리스크가 뭔지 잘 모르겠어요.",
+      "자산 리스크와 건강 리스크를 나눠서 보니까 조금 현실적으로 느껴지네요. 제 경우에는 건강 쪽이 더 걱정돼요.",
+      "그러면 지금 제 상황에서 부족한 부분을 먼저 확인해보는 게 좋겠네요.",
+    ],
+    busy: [
+      "좋아요. 짧게 말하면 제가 지금 확인해야 할 건 치료비와 생활비 공백이라는 거죠?",
+      "핵심만 들으니 이해가 됩니다. 그럼 제 기존 보험에서 그 부분이 있는지만 확인하면 될까요?",
+      "자료를 나중에 다시 볼 수 있으면 좋겠어요. 오늘은 우선 큰 방향만 잡고 싶습니다.",
+    ],
+    family: [
+      "가족에게 설명하려면 한 문장으로 뭐라고 말하면 좋을까요?",
+      "생활비 공백이라는 표현은 가족도 이해하기 쉬울 것 같아요. 자료로 정리해서 볼 수 있나요?",
+      "그러면 제가 가족에게 설명한 뒤, 다음 상담에서 보장 분석을 같이 보면 되겠네요.",
+    ],
+  };
+
+  const replies = replySets[persona.mood];
+  const reply = replies[Math.min(practiceTurn - 1, replies.length - 1)];
+
+  if (userText.length < 12) {
+    return "조금 더 구체적으로 설명해주실 수 있을까요? 제가 왜 지금 준비해야 하는지 아직은 잘 모르겠어요.";
   }
+
+  return reply;
+}
+
+function getCoachFeedback(userText) {
+  if (userText.includes("공감") || userText.includes("이해") || userText.includes("맞습니다")) {
+    return "좋습니다. 고객의 감정을 먼저 인정한 뒤 설명으로 넘어가는 흐름이 자연스럽습니다.";
+  }
+
+  if (userText.length < 24) {
+    return "답변이 조금 짧습니다. 고객의 걱정을 한 번 인정하고, 질문 하나를 덧붙이면 대화가 이어집니다.";
+  }
+
+  return "핵심 설명은 들어갔습니다. 다음 답변에서는 고객 상황을 되묻는 질문을 하나 넣어보세요.";
+}
+
+function startCustomerPractice() {
+  const detail = rpLibrary[activeRpId] || rpLibrary["insurance-basics"];
+  const persona = getPersona();
+
+  practiceTurn = 0;
+  practiceMessages.replaceChildren();
+  practiceTitle.textContent = detail.title;
+  personaSummary.textContent = `${persona.genderText} · ${persona.ageText} · ${persona.moodText}`;
+
+  addPracticeMessage("customer", getOpeningMessage(detail, persona), `${persona.genderText} 고객`);
+  addPracticeMessage("coach", "상담자는 바로 상품을 설명하기보다 고객의 걱정을 인정하고 질문으로 이어가세요.");
+}
+
+startPractice?.addEventListener("click", () => {
+  startCustomerPractice();
+});
+
+practiceForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const text = practiceInput.value.trim();
+
+  if (!text) {
+    return;
+  }
+
+  const detail = rpLibrary[activeRpId] || rpLibrary["insurance-basics"];
+  const persona = getPersona();
+
+  addPracticeMessage("advisor", text);
+  addPracticeMessage("customer", generateCustomerReply(text, detail, persona), `${persona.genderText} 고객`);
+  addPracticeMessage("coach", getCoachFeedback(text));
+  practiceInput.value = "";
+});
+
+[personaGender, personaAge, personaMood].forEach((control) => {
+  control?.addEventListener("change", () => {
+    const persona = getPersona();
+    personaSummary.textContent = `${persona.genderText} · ${persona.ageText} · ${persona.moodText}`;
+  });
 });
 
 sendToAi?.addEventListener("click", () => {
-  const detail = rpLibrary[sendToAi.dataset.rpId || "insurance-basics"];
-
-  if (coachFeed) {
-    coachFeed.removeAttribute("hidden");
-    coachFeed.replaceChildren();
-
-    const customer = document.createElement("p");
-    const customerLabel = document.createElement("b");
-    customerLabel.textContent = "고객:";
-    customer.append(customerLabel, " 보험이 꼭 필요한 건지 아직 잘 모르겠어요.");
-
-    const coach = document.createElement("p");
-    const coachLabel = document.createElement("b");
-    coachLabel.textContent = "AI 코치:";
-    coach.append(coachLabel, ` ${detail.aiPrompt}`);
-
-    coachFeed.append(customer, coach);
-  }
-
   document.querySelector("#ai-practice")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  startCustomerPractice();
 });
 
 goDiscussion?.addEventListener("click", () => {
@@ -514,3 +721,4 @@ goDiscussion?.addEventListener("click", () => {
 });
 
 renderRpDetail("insurance-basics", false);
+startCustomerPractice();

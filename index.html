@@ -178,13 +178,31 @@
             <section class="rp-detail" id="rpDetail" aria-live="polite">
               <div class="section-head compact">
                 <div>
-                  <span>Selected RP</span>
+                  <span>Training Material</span>
                   <h2 id="detailTitle">보험이란 무엇일까요?</h2>
                 </div>
                 <span class="detail-status" id="detailStatus">문서 기반 예시</span>
               </div>
               <div class="detail-tags" id="detailTags"></div>
               <p class="detail-summary" id="detailSummary"></p>
+              <div class="training-pack" aria-label="RP 교육자료 요약">
+                <article>
+                  <span>교육 목표</span>
+                  <ul id="detailGoals"></ul>
+                </article>
+                <article>
+                  <span>고객 상황</span>
+                  <p id="detailCustomer"></p>
+                </article>
+                <article>
+                  <span>핵심 질문</span>
+                  <ul id="detailQuestions"></ul>
+                </article>
+                <article>
+                  <span>강사 노트</span>
+                  <p id="detailInstructor"></p>
+                </article>
+              </div>
               <div class="detail-studio">
                 <div class="detail-main">
                   <blockquote id="detailQuote"></blockquote>
@@ -212,6 +230,13 @@
                       <p id="materialCaption"></p>
                       <ul id="materialPoints"></ul>
                     </div>
+                  </div>
+                  <div class="slide-deck">
+                    <div class="fact-check-head">
+                      <span>Explanation Slides</span>
+                      <strong id="slideCount"></strong>
+                    </div>
+                    <div id="materialSlides"></div>
                   </div>
                   <div class="fact-check">
                     <div class="fact-check-head">
@@ -338,18 +363,54 @@
             <div class="section-head compact">
               <div>
                 <span>AI Lab</span>
-                <h2>AI RP 연습실</h2>
+                <h2>AI 고객 대화 연습실</h2>
               </div>
             </div>
-            <div class="practice-stage">
-              <div class="voice-mark">AI</div>
-              <h3>상담 대화 리허설</h3>
-              <p>향후 AI가 고객 역할을 맡고, 질문 품질과 공감 표현, 마감 흐름을 평가합니다.</p>
-              <button class="secondary-button" type="button" id="practiceButton">연습 흐름 보기</button>
-            </div>
-            <div class="coach-feed" id="coachFeed" hidden>
-              <p><b>고객:</b> 보험료가 부담돼서 조금 더 생각해보고 싶어요.</p>
-              <p><b>AI 코치:</b> 바로 반박하기보다 부담의 이유를 구체화하는 질문이 좋습니다.</p>
+            <div class="practice-console">
+              <div class="persona-panel">
+                <label>
+                  <span>고객 성별</span>
+                  <select id="personaGender">
+                    <option value="female">여성</option>
+                    <option value="male">남성</option>
+                  </select>
+                </label>
+                <label>
+                  <span>고객 나이</span>
+                  <select id="personaAge">
+                    <option value="30">30대</option>
+                    <option value="20">20대</option>
+                    <option value="40">40대</option>
+                    <option value="50">50대</option>
+                    <option value="60">60대</option>
+                  </select>
+                </label>
+                <label>
+                  <span>고객 반응</span>
+                  <select id="personaMood">
+                    <option value="price">보험료 부담</option>
+                    <option value="doubt">필요성 의문</option>
+                    <option value="busy">시간 부족</option>
+                    <option value="family">가족 상의</option>
+                  </select>
+                </label>
+                <button class="primary-button full" type="button" id="startPractice">고객 대화 시작</button>
+                <p>현재는 화면용 고객 시뮬레이션입니다. 서버 API 연결 후 GPT 고객으로 교체됩니다.</p>
+              </div>
+              <div class="chat-panel">
+                <div class="chat-head">
+                  <div>
+                    <span>Roleplay Chat</span>
+                    <h3 id="practiceTitle">보험이란 무엇일까요?</h3>
+                  </div>
+                  <strong id="personaSummary">여성 · 30대 · 보험료 부담</strong>
+                </div>
+                <div class="practice-messages" id="practiceMessages"></div>
+                <form class="practice-form" id="practiceForm">
+                  <input id="practiceInput" placeholder="상담자 답변을 입력하세요" />
+                  <button class="primary-button" type="submit">전송</button>
+                </form>
+              </div>
             </div>
           </section>
 
