@@ -17,6 +17,14 @@ const detailSummary = document.querySelector("#detailSummary");
 const detailQuote = document.querySelector("#detailQuote");
 const detailFacts = document.querySelector("#detailFacts");
 const detailFlow = document.querySelector("#detailFlow");
+const detailScript = document.querySelector("#detailScript");
+const materialImage = document.querySelector("#materialImage");
+const materialBadge = document.querySelector("#materialBadge");
+const materialTitle = document.querySelector("#materialTitle");
+const materialCaption = document.querySelector("#materialCaption");
+const materialPoints = document.querySelector("#materialPoints");
+const factCheckScore = document.querySelector("#factCheckScore");
+const factChecks = document.querySelector("#factChecks");
 const sendToAi = document.querySelector("#sendToAi");
 const goDiscussion = document.querySelector("#goDiscussion");
 
@@ -42,6 +50,27 @@ const rpLibrary = {
       "원리 설명: 여러 사람이 조금씩 모아 큰 사고를 겪은 사람을 돕는 공동부담 구조를 짚습니다.",
       "마무리: 보험은 불행을 막는 상품이 아니라 경제적 붕괴를 막는 안전장치라고 정리합니다.",
     ],
+    script: [
+      { speaker: "고객", text: "보험이 꼭 필요한 건가요? 당장 없어도 큰일 나는 건 아니잖아요." },
+      { speaker: "상담자", text: "맞습니다. 보험은 눈에 보이는 물건이 아니라, 큰 변수가 생겼을 때 내 가족의 생활을 지키는 약속에 가깝습니다." },
+      { speaker: "상담자", text: "예를 들어 집에 화재가 나거나, 갑자기 암 진단으로 일을 쉬게 되면 치료비보다 더 무서운 게 생활비 공백입니다." },
+    ],
+    material: {
+      badge: "보험 기초 자료",
+      image:
+        "https://images.pexels.com/photos/7731373/pexels-photo-7731373.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      alt: "가족의 재무 상담 장면",
+      title: "보험은 보이지 않는 약속을 시각화하는 상담입니다",
+      caption:
+        "고객이 보험을 상품이 아닌 리스크 관리 장치로 이해하도록, 자산 리스크와 건강 리스크를 한 화면에서 비교합니다.",
+      points: ["자산 리스크: 화재, 자연재해, 배상 책임", "건강 리스크: 치료비와 소득 공백", "핵심 메시지: 가족 경제를 지키는 안전장치"],
+    },
+    checks: [
+      { level: "확인", title: "문서 기반", text: "업로드한 Word 문서의 핵심 문장을 바탕으로 요약했습니다." },
+      { level: "주의", title: "보험료 예시", text: "월 보험료와 보장 금액은 상품, 연령, 담보, 직업, 고지사항에 따라 달라질 수 있습니다." },
+      { level: "보강", title: "공식 근거", text: "다음 단계에서는 생명보험협회·손해보험협회 등 공식 자료 링크를 팩트체크에 연결할 수 있습니다." },
+    ],
+    checkScore: "자료 기반",
     aiPrompt:
       "고객이 '보험이 꼭 필요한가요?'라고 묻는 상황으로 시작해 자산 리스크와 건강 리스크를 쉽게 설명하는 연습을 진행합니다.",
   },
@@ -63,6 +92,26 @@ const rpLibrary = {
       "기존 보장에 대한 확신 정도를 확인합니다.",
       "증권 분석의 필요성을 고객 언어로 정리합니다.",
     ],
+    script: [
+      { speaker: "상담자", text: "가장 먼저 여쭤보고 싶은 건 가입한 상품명이 아니라, 어떤 상황이 가장 걱정되시는지입니다." },
+      { speaker: "고객", text: "아프면 병원비도 걱정이고, 일을 못 하면 생활비도 걱정이죠." },
+      { speaker: "상담자", text: "그 두 가지를 기준으로 지금 보장이 충분한지 같이 확인해보겠습니다." },
+    ],
+    material: {
+      badge: "니즈 분석 자료",
+      image:
+        "https://images.pexels.com/photos/7821485/pexels-photo-7821485.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      alt: "상담자가 고객과 자료를 검토하는 장면",
+      title: "질문은 상품이 아니라 걱정에서 시작합니다",
+      caption: "고객의 가족 구조, 소득 책임, 치료비 걱정을 먼저 정리하면 보장 분석의 설득력이 커집니다.",
+      points: ["가족 책임 확인", "소득 공백 기간 질문", "기존 보장 확신도 점검"],
+    },
+    checks: [
+      { level: "확인", title: "상담 흐름", text: "상품 설명 전 고객 상황 확인을 우선하는 구조입니다." },
+      { level: "주의", title: "개인정보", text: "건강 정보와 가족 정보는 동의와 보안 기준을 지켜 수집해야 합니다." },
+      { level: "보강", title: "자료 연결", text: "향후 증권 이미지와 보장 분석표를 함께 표시할 수 있습니다." },
+    ],
+    checkScore: "상담 기준",
     aiPrompt: "신규 고객이 보장 분석에 소극적인 상황에서 니즈를 환기하는 질문 연습을 진행합니다.",
   },
   "objection-steps": {
@@ -83,6 +132,26 @@ const rpLibrary = {
       "가장 중요한 위험부터 다시 우선순위를 잡습니다.",
       "선택 가능한 대안을 제시하고 다음 행동을 합의합니다.",
     ],
+    script: [
+      { speaker: "고객", text: "보험료가 부담돼서 조금 더 생각해보고 싶어요." },
+      { speaker: "상담자", text: "그렇게 느끼실 수 있습니다. 부담되는 부분이 금액인지, 필요성인지 먼저 나눠서 봐도 될까요?" },
+      { speaker: "상담자", text: "가장 지키고 싶은 위험부터 남기고, 우선순위가 낮은 부분은 조정해보겠습니다." },
+    ],
+    material: {
+      badge: "거절 처리 자료",
+      image:
+        "https://images.pexels.com/photos/7681091/pexels-photo-7681091.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      alt: "상담 중 메모를 확인하는 장면",
+      title: "거절은 반대가 아니라 추가 질문의 신호입니다",
+      caption: "감정 인정, 사유 분류, 우선순위 재정렬 순서로 상담의 흐름을 유지합니다.",
+      points: ["감정 인정", "거절 사유 분류", "대안 제시와 다음 행동 합의"],
+    },
+    checks: [
+      { level: "확인", title: "대화 원칙", text: "반박보다 인정과 분류 질문을 앞세우는 구조입니다." },
+      { level: "주의", title: "불완전판매 방지", text: "부담을 낮추기 위해 핵심 보장을 과도하게 축소하지 않도록 주의해야 합니다." },
+      { level: "보강", title: "관리자 검수", text: "실제 적용 전 금지 표현과 설명 의무 항목을 검수할 수 있습니다." },
+    ],
+    checkScore: "검수 필요",
     aiPrompt: "고객이 '보험료가 부담됩니다'라고 말하는 상황에서 감정 인정 후 질문으로 전환하는 연습을 진행합니다.",
   },
   "final-check": {
@@ -103,6 +172,26 @@ const rpLibrary = {
       "보험료 유지 가능성과 납입 계획을 확인합니다.",
       "고객의 최종 질문을 받고 다음 절차를 안내합니다.",
     ],
+    script: [
+      { speaker: "상담자", text: "오늘은 가입을 서두르기보다, 이 보장이 어떤 상황을 막기 위한 것인지 마지막으로 확인하겠습니다." },
+      { speaker: "고객", text: "제가 이해한 게 맞는지 다시 한번 듣고 싶어요." },
+      { speaker: "상담자", text: "좋습니다. 보장 목적, 납입 계획, 고지사항 순서로 짧게 정리해드리겠습니다." },
+    ],
+    material: {
+      badge: "마감 상담 자료",
+      image:
+        "https://images.pexels.com/photos/7648047/pexels-photo-7648047.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      alt: "계약 전 문서를 확인하는 장면",
+      title: "계약 전에는 고객의 이해를 먼저 확인합니다",
+      caption: "보장 목적, 제외될 수 있는 상황, 납입 여력을 고객 언어로 다시 정리하는 마지막 체크 화면입니다.",
+      points: ["가입 목적 재확인", "보장 범위와 유의사항 점검", "납입 유지 가능성 확인"],
+    },
+    checks: [
+      { level: "확인", title: "설명 의무", text: "계약 전 중요 사항을 다시 확인하는 흐름입니다." },
+      { level: "주의", title: "고지사항", text: "건강 상태, 직업, 병력 등 고지사항은 실제 절차에 맞춰 정확히 확인해야 합니다." },
+      { level: "보강", title: "체크리스트", text: "향후 전자서명 전 확인 체크리스트와 연결할 수 있습니다." },
+    ],
+    checkScore: "절차 기반",
     aiPrompt: "계약 전 고객이 불안해하는 상황에서 보장 목적과 유지 계획을 차분히 확인하는 연습을 진행합니다.",
   },
 };
@@ -140,6 +229,45 @@ function renderTags(tags) {
   });
 }
 
+function renderScript(lines) {
+  detailScript.replaceChildren();
+
+  lines.forEach((line) => {
+    const row = document.createElement("p");
+    const speaker = document.createElement("strong");
+    speaker.textContent = line.speaker;
+    row.append(speaker, line.text);
+    detailScript.append(row);
+  });
+}
+
+function renderMaterial(material) {
+  materialImage.src = material.image;
+  materialImage.alt = material.alt;
+  materialBadge.textContent = material.badge;
+  materialTitle.textContent = material.title;
+  materialCaption.textContent = material.caption;
+  replaceList(materialPoints, material.points);
+}
+
+function renderChecks(checks, score) {
+  factChecks.replaceChildren();
+  factCheckScore.textContent = score;
+
+  checks.forEach((check) => {
+    const item = document.createElement("article");
+    const level = document.createElement("span");
+    const title = document.createElement("strong");
+    const text = document.createElement("p");
+
+    level.textContent = check.level;
+    title.textContent = check.title;
+    text.textContent = check.text;
+    item.append(level, title, text);
+    factChecks.append(item);
+  });
+}
+
 function setActiveRp(id) {
   document.querySelectorAll(".scenario-card, .featured-rp").forEach((card) => {
     card.classList.toggle("active", card.dataset.rpId === id);
@@ -159,8 +287,11 @@ function renderRpDetail(id, shouldScroll = true) {
   detailSummary.textContent = detail.summary;
   detailQuote.textContent = detail.quote;
   renderTags(detail.tags);
-  replaceList(detailFacts, detail.facts, "li");
-  replaceList(detailFlow, detail.flow, "li");
+  replaceList(detailFacts, detail.facts);
+  replaceList(detailFlow, detail.flow);
+  renderScript(detail.script);
+  renderMaterial(detail.material);
+  renderChecks(detail.checks, detail.checkScore);
   setActiveRp(id);
 
   sendToAi.dataset.rpId = id;
@@ -252,6 +383,24 @@ uploadForm?.addEventListener("submit", (event) => {
       "고객 상황, 목표, 핵심 질문을 정리합니다.",
       "관리자 검토 후 라이브러리에 공개합니다.",
     ],
+    script: [
+      { speaker: "상담자", text: memo || "고객 상황을 입력하면 이곳에 RP 대화 예시가 표시됩니다." },
+      { speaker: "고객", text: "이 상황에서 제가 어떤 선택을 해야 할지 궁금합니다." },
+    ],
+    material: {
+      badge: "임시 자료",
+      image:
+        "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      alt: "자료 대시보드 화면",
+      title: "업로드 자료가 연결될 예정입니다",
+      caption: "파일 업로드를 붙이면 RP별 자료화면, 그림, 팩트체크 항목을 자동으로 구성할 수 있습니다.",
+      points: ["문서 요약", "관련 이미지", "팩트체크 항목"],
+    },
+    checks: [
+      { level: "작성", title: "임시 저장", text: "현재는 브라우저에서만 확인되는 임시 데이터입니다." },
+      { level: "예정", title: "DB 연결", text: "Supabase 연결 후 자료와 팩트체크가 영구 저장됩니다." },
+    ],
+    checkScore: "작성 중",
     aiPrompt: `${title} 상황을 기준으로 고객 역할 AI 연습을 준비합니다.`,
   };
 

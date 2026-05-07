@@ -185,16 +185,42 @@
               </div>
               <div class="detail-tags" id="detailTags"></div>
               <p class="detail-summary" id="detailSummary"></p>
-              <blockquote id="detailQuote"></blockquote>
-              <div class="detail-grid">
-                <article>
-                  <h3>핵심 팩트</h3>
-                  <ul id="detailFacts"></ul>
-                </article>
-                <article>
-                  <h3>RP 진행 흐름</h3>
-                  <ol id="detailFlow"></ol>
-                </article>
+              <div class="detail-studio">
+                <div class="detail-main">
+                  <blockquote id="detailQuote"></blockquote>
+                  <div class="script-preview" id="detailScript"></div>
+                  <div class="detail-grid">
+                    <article>
+                      <h3>핵심 팩트</h3>
+                      <ul id="detailFacts"></ul>
+                    </article>
+                    <article>
+                      <h3>RP 진행 흐름</h3>
+                      <ol id="detailFlow"></ol>
+                    </article>
+                  </div>
+                </div>
+                <aside class="material-board" aria-label="RP 자료화면과 팩트체크">
+                  <div class="material-screen">
+                    <div class="material-image">
+                      <img id="materialImage" src="" alt="" />
+                      <span id="materialBadge">자료화면</span>
+                    </div>
+                    <div class="material-copy">
+                      <span>자료화면</span>
+                      <h3 id="materialTitle"></h3>
+                      <p id="materialCaption"></p>
+                      <ul id="materialPoints"></ul>
+                    </div>
+                  </div>
+                  <div class="fact-check">
+                    <div class="fact-check-head">
+                      <span>Fact Check</span>
+                      <strong id="factCheckScore"></strong>
+                    </div>
+                    <div id="factChecks"></div>
+                  </div>
+                </aside>
               </div>
               <div class="detail-actions">
                 <button class="secondary-button" type="button" id="sendToAi">AI 연습으로 보내기</button>
