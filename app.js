@@ -45,9 +45,12 @@ const personaSummary = document.querySelector("#personaSummary");
 const practiceMessages = document.querySelector("#practiceMessages");
 const practiceForm = document.querySelector("#practiceForm");
 const practiceInput = document.querySelector("#practiceInput");
+const practiceSubmit = practiceForm?.querySelector("button[type='submit']");
 
 let activeRpId = "insurance-basics";
 let practiceTurn = 0;
+let practiceHistory = [];
+let gptFallbackNoticeShown = false;
 
 const rpLibrary = {
   "insurance-basics": {
@@ -714,6 +717,19 @@ function addPracticeMessage(role, text, meta = "") {
   row.append(label, body);
   practiceMessages.append(row);
   practiceMessages.scrollTop = practiceMessages.scrollHeight;
+
+  return row;
+}
+
+function setPracticeBusy(isBusy) {
+  if (practiceInput) {
+    practiceInput.disabled = isBusy;
+  }
+
+  if (practiceSubmit) {
+    practiceSubmit.disabled = isBusy;
+    practiceSubmit.textContent = isBusy ? "응답 중" : "전송";
+  }
 }
 
 function getOpeningMessage(detail, persona) {
@@ -775,16 +791,65 @@ function getCoachFeedback(userText) {
   return "핵심 설명은 들어갔습니다. 다음 답변에서는 고객 상황을 되묻는 질문을 하나 넣어보세요.";
 }
 
+async function requestAiCustomerReply(userText, detail, persona) {
+  try {
+    const response = await fetch("api/rp-practice", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        rpTitle: detail.title,
+        scenario: detail.summary,
+        learningGoals: detail.learningGoals,
+        materialFacts: detail.facts,
+        keyQuestions: detail.keyQuestions,
+        persona,
+        userMessage: userText,
+        history: practiceHistory.slice(-8),
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("AI API is not available in this deployment.");
+    }
+
+    const data = await response.json();
+
+    return {
+      source: "gpt",
+      reply: data.reply || generateCustomerReply(userText, detail, persona),
+      coaching: data.coaching || getCoachFeedback(userText),
+      nextFocus: data.nextFocus || "",
+    };
+  } catch (error) {
+    if (!gptFallbackNoticeShown) {
+      showToast("현재 GitHub Pages에서는 데모 고객으로 응답합니다. Vercel 서버 API를 연결하면 GPT 고객으로 작동합니다.");
+      gptFallbackNoticeShown = true;
+    }
+
+    return {
+      source: "demo",
+      reply: generateCustomerReply(userText, detail, persona),
+      coaching: getCoachFeedback(userText),
+      nextFocus: "고객의 걱정을 인정하고 다음 질문으로 연결하기",
+    };
+  }
+}
+
 function startCustomerPractice() {
   const detail = rpLibrary[activeRpId] || rpLibrary["insurance-basics"];
   const persona = getPersona();
 
   practiceTurn = 0;
+  practiceHistory = [];
   practiceMessages.replaceChildren();
   practiceTitle.textContent = detail.title;
   renderPersonaCard(persona);
 
-  addPracticeMessage("customer", getOpeningMessage(detail, persona), `${persona.genderText} 고객`);
+  const openingMessage = getOpeningMessage(detail, persona);
+  addPracticeMessage("customer", openingMessage, `${persona.genderText} 고객`);
+  practiceHistory.push({ role: "customer", text: openingMessage });
   addPracticeMessage("coach", "상담자는 바로 상품을 설명하기보다 고객의 걱정을 인정하고 질문으로 이어가세요.");
 }
 
@@ -792,7 +857,7 @@ startPractice?.addEventListener("click", () => {
   startCustomerPractice();
 });
 
-practiceForm?.addEventListener("submit", (event) => {
+practiceForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const text = practiceInput.value.trim();
@@ -805,9 +870,20 @@ practiceForm?.addEventListener("submit", (event) => {
   const persona = getPersona();
 
   addPracticeMessage("advisor", text);
-  addPracticeMessage("customer", generateCustomerReply(text, detail, persona), `${persona.genderText} 고객`);
-  addPracticeMessage("coach", getCoachFeedback(text));
+  practiceHistory.push({ role: "advisor", text });
   practiceInput.value = "";
+  setPracticeBusy(true);
+
+  const result = await requestAiCustomerReply(text, detail, persona);
+  const customerLabel = result.source === "gpt" ? `${persona.genderText} GPT 고객` : `${persona.genderText} 고객`;
+  const coachMessage = result.nextFocus ? `${result.coaching} 다음 포인트: ${result.nextFocus}` : result.coaching;
+
+  addPracticeMessage("customer", result.reply, customerLabel);
+  addPracticeMessage("coach", coachMessage);
+  practiceHistory.push({ role: "customer", text: result.reply });
+  practiceHistory.push({ role: "coach", text: coachMessage });
+  setPracticeBusy(false);
+  practiceInput.focus();
 });
 
 [personaGender, personaAge, personaMood].forEach((control) => {
