@@ -9,7 +9,7 @@ OpenAI API Key를 브라우저에 넣으면 노출되므로, 반드시 서버 AP
 
 ```env
 OPENAI_API_KEY=replace_with_your_openai_api_key
-OPENAI_MODEL=gpt-5.5
+OPENAI_MODEL=gpt-5-nano
 OPENAI_RP_SYSTEM_PROMPT=You are an AI customer for Korean insurance roleplay practice. Stay realistic, ask follow-up questions, and give concise coaching feedback after the user responds.
 ```
 
@@ -39,7 +39,7 @@ export async function POST(request) {
   const { rpTitle, scenario, userMessage } = await request.json();
 
   const response = await client.responses.create({
-    model: process.env.OPENAI_MODEL || "gpt-5.5",
+    model: process.env.OPENAI_MODEL || "gpt-5-nano",
     instructions: process.env.OPENAI_RP_SYSTEM_PROMPT,
     input: `
 RP 제목: ${rpTitle}
@@ -64,4 +64,3 @@ AI 고객 역할로 자연스럽게 응답하고, 마지막에 상담 피드백�
 4. 현재 AI 연습실 UI에서 `/api/rp-practice` 호출
 5. Supabase에 연습 기록과 피드백 저장
 6. 이후 Realtime API로 음성 RP 연습 확장
-
