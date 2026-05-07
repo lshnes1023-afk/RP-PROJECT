@@ -27,6 +27,9 @@ const materialCaption = document.querySelector("#materialCaption");
 const materialPoints = document.querySelector("#materialPoints");
 const materialSlides = document.querySelector("#materialSlides");
 const slideCount = document.querySelector("#slideCount");
+const lessonViewer = document.querySelector(".lesson-viewer");
+const lessonFrame = document.querySelector("#lessonFrame");
+const lessonOpenLink = document.querySelector("#lessonOpenLink");
 const factCheckScore = document.querySelector("#factCheckScore");
 const factChecks = document.querySelector("#factChecks");
 const sendToAi = document.querySelector("#sendToAi");
@@ -34,6 +37,8 @@ const goDiscussion = document.querySelector("#goDiscussion");
 const personaGender = document.querySelector("#personaGender");
 const personaAge = document.querySelector("#personaAge");
 const personaMood = document.querySelector("#personaMood");
+const personaCardTitle = document.querySelector("#personaCardTitle");
+const personaCardText = document.querySelector("#personaCardText");
 const startPractice = document.querySelector("#startPractice");
 const practiceTitle = document.querySelector("#practiceTitle");
 const personaSummary = document.querySelector("#personaSummary");
@@ -51,6 +56,7 @@ const rpLibrary = {
     tags: ["보험 기초", "고객 공감 도입", "초급", "자산/건강 리스크"],
     summary:
       "보험을 보이지 않는 약속으로 설명하고, 고객이 체감하기 쉬운 화재·질병 사례를 통해 보험의 필요성을 이해하도록 돕는 RP입니다.",
+    lessonUrl: "materials/insurance-basics.html",
     learningGoals: [
       "고객이 보험을 상품이 아니라 리스크 관리 장치로 이해하게 만든다.",
       "자산 리스크와 건강 리스크를 생활 사례로 구분해 설명한다.",
@@ -161,6 +167,82 @@ const rpLibrary = {
     ],
     checkScore: "상담 기준",
     aiPrompt: "신규 고객이 보장 분석에 소극적인 상황에서 니즈를 환기하는 질문 연습을 진행합니다.",
+  },
+  "life-vs-nonlife": {
+    title: "생명보험 vs 손해보험",
+    status: "첨부 교육자료",
+    tags: ["보험 비교", "신입교육", "생명보험", "손해보험"],
+    summary:
+      "생명보험과 손해보험의 태생, 보상 방식, 고객이 느끼는 브랜드 온도 차이를 비교하며 두 영역의 차이와 융합 흐름을 교육하는 강의 자료입니다.",
+    lessonUrl: "materials/life-vs-nonlife.html",
+    learningGoals: [
+      "생명보험과 손해보험이 무엇을 지키기 위해 출발했는지 설명한다.",
+      "정액 보상과 실손 보상의 차이를 고객 언어로 구분한다.",
+      "고객이 느끼는 감성적 언어와 이성적 언어의 차이를 상담에 적용한다.",
+    ],
+    customerProfile:
+      "생명보험과 손해보험의 차이를 막연히 알고 있지만, 실제 상담에서 어떻게 구분해 설명해야 하는지 어려워하는 신입 교육 대상자입니다.",
+    keyQuestions: [
+      "생명보험은 사람의 어떤 리스크를 중심으로 설명해야 할까요?",
+      "손해보험은 사고 후 어떤 비용을 복구하는 개념일까요?",
+      "정액 보상과 실손 보상은 고객에게 어떤 예시로 설명하면 좋을까요?",
+    ],
+    instructorNote:
+      "두 보험을 경쟁 구도로만 설명하지 말고, 태생의 차이와 현재의 융합 흐름을 함께 설명해야 합니다. 고객 상담에서는 ‘무엇을 지키는 보험인지’부터 잡아주는 것이 핵심입니다.",
+    quote: "두 형제는 태어난 곳도, 성격도 다릅니다. 하지만 지금은 서로 닮아가고 있습니다.",
+    facts: [
+      "생명보험은 사람의 생존과 사망, 가족의 경제적 안전을 중심으로 설명합니다.",
+      "손해보험은 화재, 자동차, 배상책임처럼 재산상의 손해 복구에서 출발했습니다.",
+      "생명보험은 정액 보상, 손해보험은 실손 보상 구조를 중심으로 설명하면 고객 이해가 쉽습니다.",
+      "현재는 제3보험 영역에서 두 보험의 경계가 일부 겹치므로 상품별 약관 확인이 필요합니다.",
+    ],
+    flow: [
+      "태생의 차이: 사람을 지키는 보험과 물건·비용을 복구하는 보험으로 구분합니다.",
+      "브랜드 언어: 생명보험은 가족·약속, 손해보험은 신속·해결의 언어를 사용합니다.",
+      "보상 방식: 정액 보상과 실손 보상의 차이를 사례로 보여줍니다.",
+      "상담 적용: 고객이 원하는 보호 대상이 사람인지 비용인지 먼저 질문합니다.",
+    ],
+    script: [
+      { speaker: "고객", text: "생명보험이랑 손해보험은 결국 비슷한 거 아닌가요?" },
+      { speaker: "상담자", text: "비슷해 보이지만 출발점이 다릅니다. 생명보험은 사람의 삶과 가족을, 손해보험은 사고로 생긴 비용과 손해를 복구하는 데서 출발했습니다." },
+      { speaker: "상담자", text: "그래서 고객님께는 먼저 ‘무엇을 지키고 싶은지’를 여쭤보는 것이 가장 정확합니다." },
+    ],
+    material: {
+      badge: "비교 교육자료",
+      image:
+        "https://images.pexels.com/photos/7821713/pexels-photo-7821713.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      alt: "두 가지 자료를 비교하며 교육하는 장면",
+      title: "태생이 다르면 상담 언어도 달라집니다",
+      caption:
+        "생명보험과 손해보험은 보호 대상, 보상 방식, 고객이 기대하는 해결 방식이 다르므로 비교형 자료로 설명해야 합니다.",
+      points: ["생명보험: 사람, 가족, 정액 보상", "손해보험: 사고, 비용, 실손 보상", "제3보험: 경계가 일부 겹치는 영역"],
+      slides: [
+        {
+          title: "1. 생명보험의 출발점",
+          body: "사람의 생존과 사망, 남겨진 가족의 경제적 안전을 중심으로 출발했습니다.",
+        },
+        {
+          title: "2. 손해보험의 출발점",
+          body: "화재, 자동차, 배상책임 등 실제로 발생한 손해와 비용을 복구하는 관점에서 출발했습니다.",
+        },
+        {
+          title: "3. 보상 방식의 차이",
+          body: "생명보험은 약속한 금액을 지급하는 정액 보상, 손해보험은 실제 손해를 보전하는 실손 보상을 중심으로 이해합니다.",
+        },
+        {
+          title: "4. 상담 적용",
+          body: "고객에게는 ‘사람을 지키는 문제인지, 사고 비용을 복구하는 문제인지’를 먼저 질문합니다.",
+        },
+      ],
+    },
+    checks: [
+      { level: "확인", title: "첨부 자료 기반", text: "생명vs손해.html 교육자료의 구조와 메시지를 라이브러리에 연결했습니다." },
+      { level: "주의", title: "상품별 차이", text: "실제 보장과 지급 방식은 상품 약관, 담보, 특약에 따라 달라집니다." },
+      { level: "보강", title: "실무 적용", text: "향후 생보·손보 실제 상품 예시를 추가하면 신입 교육 완성도가 높아집니다." },
+    ],
+    checkScore: "교육자료",
+    aiPrompt:
+      "고객이 생명보험과 손해보험의 차이를 묻는 상황에서, 보호 대상과 보상 방식 중심으로 쉽게 설명하는 연습을 진행합니다.",
   },
   "objection-steps": {
     title: "거절 처리 3단계 스크립트",
@@ -366,6 +448,17 @@ function renderChecks(checks, score) {
   });
 }
 
+function renderLesson(detail) {
+  if (!detail.lessonUrl) {
+    lessonViewer.hidden = true;
+    return;
+  }
+
+  lessonViewer.hidden = false;
+  lessonFrame.src = detail.lessonUrl;
+  lessonOpenLink.href = detail.lessonUrl;
+}
+
 function setActiveRp(id) {
   document.querySelectorAll(".scenario-card, .featured-rp").forEach((card) => {
     card.classList.toggle("active", card.dataset.rpId === id);
@@ -391,6 +484,7 @@ function renderRpDetail(id, shouldScroll = true) {
   renderScript(detail.script);
   renderMaterial(detail.material);
   renderChecks(detail.checks, detail.checkScore);
+  renderLesson(detail);
   setActiveRp(id);
 
   activeRpId = id;
@@ -583,6 +677,12 @@ function getPersona() {
     busy: "시간 부족",
     family: "가족 상의",
   };
+  const moodDescription = {
+    price: "보험료 부담을 느끼고 있는 고객",
+    doubt: "보험 필요성에 의문을 가진 고객",
+    busy: "상담 시간이 부족한 고객",
+    family: "가족과 상의 후 결정하려는 고객",
+  };
 
   return {
     gender: personaGender.value,
@@ -591,7 +691,14 @@ function getPersona() {
     ageText,
     mood: personaMood.value,
     moodText: moodMap[personaMood.value],
+    description: moodDescription[personaMood.value],
   };
+}
+
+function renderPersonaCard(persona) {
+  personaCardTitle.textContent = `${persona.genderText} · ${persona.ageText}`;
+  personaCardText.textContent = persona.description;
+  personaSummary.textContent = `${persona.genderText} · ${persona.ageText} · ${persona.moodText}`;
 }
 
 function addPracticeMessage(role, text, meta = "") {
@@ -675,7 +782,7 @@ function startCustomerPractice() {
   practiceTurn = 0;
   practiceMessages.replaceChildren();
   practiceTitle.textContent = detail.title;
-  personaSummary.textContent = `${persona.genderText} · ${persona.ageText} · ${persona.moodText}`;
+  renderPersonaCard(persona);
 
   addPracticeMessage("customer", getOpeningMessage(detail, persona), `${persona.genderText} 고객`);
   addPracticeMessage("coach", "상담자는 바로 상품을 설명하기보다 고객의 걱정을 인정하고 질문으로 이어가세요.");
@@ -706,7 +813,7 @@ practiceForm?.addEventListener("submit", (event) => {
 [personaGender, personaAge, personaMood].forEach((control) => {
   control?.addEventListener("change", () => {
     const persona = getPersona();
-    personaSummary.textContent = `${persona.genderText} · ${persona.ageText} · ${persona.moodText}`;
+    renderPersonaCard(persona);
   });
 });
 

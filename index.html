@@ -247,6 +247,16 @@
                   </div>
                 </aside>
               </div>
+              <section class="lesson-viewer" aria-label="첨부 교육자료 원문 미리보기">
+                <div class="section-head compact">
+                  <div>
+                    <span>Original Lesson</span>
+                    <h2>교육자료 원문 화면</h2>
+                  </div>
+                  <a class="text-button" id="lessonOpenLink" href="materials/insurance-basics.html" target="_blank" rel="noreferrer">새 창으로 보기 ↗</a>
+                </div>
+                <iframe id="lessonFrame" title="RP 교육자료 원문" src="materials/insurance-basics.html"></iframe>
+              </section>
               <div class="detail-actions">
                 <button class="secondary-button" type="button" id="sendToAi">AI 연습으로 보내기</button>
                 <button class="secondary-button" type="button" id="goDiscussion">의견 남기기</button>
@@ -265,6 +275,18 @@
                   <p>토탈인스 교육팀 · 18분</p>
                 </div>
                 <button class="mini-button rp-open" type="button" data-rp-id="needs-discovery">열기</button>
+              </article>
+              <article class="scenario-card" data-rp-id="life-vs-nonlife" data-title="생명보험 손해보험 비교 교육자료 신입교육">
+                <i class="accent orange"></i>
+                <div>
+                  <div class="meta">
+                    <span>보험 비교</span>
+                    <span>교육자료</span>
+                  </div>
+                  <h3>생명보험 vs 손해보험</h3>
+                  <p>2월 신입교육 · PM 강의안</p>
+                </div>
+                <button class="mini-button rp-open" type="button" data-rp-id="life-vs-nonlife">열기</button>
               </article>
               <article class="scenario-card" data-rp-id="objection-steps" data-title="거절 처리 3단계 스크립트 상담 전환 고급">
                 <i class="accent gold"></i>
@@ -368,6 +390,11 @@
             </div>
             <div class="practice-console">
               <div class="persona-panel">
+                <div class="customer-card">
+                  <span>선택된 AI 고객</span>
+                  <strong id="personaCardTitle">여성 · 30대</strong>
+                  <p id="personaCardText">보험료 부담을 느끼고 있는 고객</p>
+                </div>
                 <label>
                   <span>고객 성별</span>
                   <select id="personaGender">

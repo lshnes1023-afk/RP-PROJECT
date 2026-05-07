@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 신입 금융전문가 교육 - 1일차</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* 기본 폰트 설정: MZ 세대가 선호하는 깔끔한 고딕 (프리텐다드) */
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* 볼드체 금지 및 강조 스타일 정의 */
+        .highlight {
+            background: linear-gradient(to top, #ffe8a1 40%, transparent 40%);
+            display: inline;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 스크롤 애니메이션 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* 타임라인 스타일 */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e5e7eb;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Intro -->
+    <header class="w-full bg-white fixed top-0 z-50 border-b border-gray-100 bg-opacity-90 backdrop-blur-md">
+        <div class="max-w-3xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-indigo-600 font-medium tracking-tight">GLOBAL FINANCIAL SALES</div>
+            <div class="text-sm text-gray-500">2026. 02. 09 (Mon)</div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-6 pt-24 pb-20">
+        
+        <!-- Title Section -->
+        <section class="fade-in-section py-10 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-indigo-50 text-indigo-600 text-sm mb-4">Day 1 : AM 10:00 - 12:00</span>
+            <h1 class="text-4xl font-medium text-gray-900 mb-6 leading-tight">
+                보험이란 무엇인가?<br>
+                <span class="text-indigo-600 text-3xl mt-2 block">정의와 역사, 그리고 정신</span>
+            </h1>
+            <p class="text-gray-500 text-lg font-light">
+                우리는 단순한 영업을 하는 것이 아닙니다.<br>
+                <span class="highlight">타인의 삶을 지키는 가치</span>를 전달합니다.
+            </p>
+        </section>
+
+        <!-- Chapter 1: Definition -->
+        <section class="fade-in-section my-16">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center">1</div>
+                <h2 class="text-2xl font-medium text-gray-800">보험의 정의 (Definition)</h2>
+            </div>
+            
+            <div class="card p-8 mb-6 border-l-4 border-indigo-500">
+                <p class="text-xl text-center font-medium text-gray-700 mb-4">
+                    "위험(Risk)의 전가(Transfer)"
+                </p>
+                <p class="text-gray-600 font-light text-center">
+                    나에게 발생할 수 있는 감당하기 힘든 경제적 손실을<br>
+                    적은 비용으로 보험회사에 넘기는 것
+                </p>
+            </div>
+
+            <!-- Example Box -->
+            <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                <h3 class="flex items-center gap-2 text-gray-700 mb-3">
+                    <i data-lucide="smartphone" class="w-5 h-5 text-indigo-500"></i>
+                    <span class="font-medium">MZ 맞춤 예시 : 스마트폰 파손</span>
+                </h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
+                        <span class="text-gray-500">상황 A (보험 X)</span>
+                        <div class="text-right">
+                            <div class="text-red-500 font-medium">- 500,000원</div>
+                            <div class="text-xs text-gray-400">액정 수리비 일시불 지출</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm border border-indigo-100">
+                        <span class="text-indigo-600 font-medium">상황 B (보험 O)</span>
+                        <div class="text-right">
+                            <div class="text-gray-800 font-medium">- 5,000원/월</div>
+                            <div class="text-xs text-gray-400">커피 한 잔 값으로 리스크 방어</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-4 text-sm text-gray-500">
+                    💡 핵심 : 적은 비용(보험료)으로 불확실한 미래의 큰 지출(보험금)을 확정적인 비용으로 바꾸는 행위입니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- Chapter 1.5: Fun Facts (Unique Insurance) -->
+        <section class="fade-in-section my-20">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-yellow-100 p-2 rounded-full">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-yellow-600"></i>
+                </div>
+                <h2 class="text-2xl font-medium text-gray-800">잠깐! 세상에 이런 보험이?</h2>
+            </div>
+            
+            <p class="text-gray-500 font-light mb-6">
+                보험의 대상에는 한계가 없습니다. <span class="highlight">가치(Value)</span>가 있다면 무엇이든 지킬 수 있습니다.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Card 1: Alien -->
+                <div class="card p-5 text-center hover:bg-indigo-50 transition border border-gray-100">
+                    <div class="text-4xl mb-4 transform hover:scale-110 transition duration-300">👽</div>
+                    <h3 class="font-medium text-gray-800 mb-2">외계인 납치 보험</h3>
+                    <p class="text-xs text-gray-500 font-light leading-relaxed">
+                        미국과 영국에서 실제 판매 중.<br>
+                        외계인에게 납치되었다 돌아오면<br>
+                        보상금을 지급합니다.<br>
+                        <u>(약 3만 건 이상 판매됨)</u>
+                    </p>
+                </div>
+                
+                <!-- Card 2: Hole-in-one -->
+                <div class="card p-5 text-center hover:bg-indigo-50 transition border border-gray-100">
+                    <div class="text-4xl mb-4 transform hover:scale-110 transition duration-300">⛳</div>
+                    <h3 class="font-medium text-gray-800 mb-2">홀인원 보험</h3>
+                    <p class="text-xs text-gray-500 font-light leading-relaxed">
+                        한국 골퍼들에게 필수!<br>
+                        기분 좋은 사고(?)를 대비합니다.<br>
+                        축하 만찬, 기념품 구입 등<br>
+                        <u>'한턱 쏘는 비용'</u>을 보장.
+                    </p>
+                </div>
+                
+                <!-- Card 3: Body Parts -->
+                <div class="card p-5 text-center hover:bg-indigo-50 transition border border-gray-100">
+                    <div class="text-4xl mb-4 transform hover:scale-110 transition duration-300">🦵</div>
+                    <h3 class="font-medium text-gray-800 mb-2">다리/성대 보험</h3>
+                    <p class="text-xs text-gray-500 font-light leading-relaxed">
+                        머라이어 캐리 성대, 베컴 다리.<br>
+                        신체가 곧 자산인 스타들.<br>
+                        <u>특정 신체 부위의 손상</u>이<br>
+                        곧 경제적 손실이기 때문.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-4 bg-gray-50 px-4 py-3 rounded-lg text-right">
+                 <p class="text-xs text-gray-500">
+                    💡 <strong>Insight :</strong> 리스크(Risk)란 단순히 아프거나 다치는 것뿐만 아니라,<br>
+                    나의 재정에 타격을 주는 <u>모든 불확실한 사건</u>을 의미합니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- [NEW] Section: Financial House -->
+        <section class="fade-in-section my-20">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="bg-red-100 p-2 rounded-full">
+                    <i data-lucide="home" class="w-5 h-5 text-red-600"></i>
+                </div>
+                <h2 class="text-2xl font-medium text-gray-800">왜 보험부터 해야 할까? (Financial House)</h2>
+            </div>
+
+            <p class="text-gray-500 font-light mb-8">
+                재무 설계를 <u>집 짓기</u>에 비유해 봅시다. 여러분은 지붕부터 짓나요, 바닥부터 짓나요?
+            </p>
+
+            <div class="relative max-w-md mx-auto">
+                <!-- Roof (Investment) -->
+                <div class="bg-indigo-400 p-4 rounded-t-2xl text-center text-white relative z-10 hover:bg-indigo-500 transition cursor-pointer group">
+                    <div class="font-medium text-lg">투자 (Investment)</div>
+                    <div class="text-xs text-indigo-100">주식, 코인, 부동산</div>
+                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10 opacity-0 group-hover:opacity-100 transition rounded-t-2xl">
+                        <span class="text-sm">수익성 (Yield)</span>
+                    </div>
+                </div>
+                
+                <!-- Pillar (Savings) -->
+                <div class="bg-indigo-300 p-6 mx-4 text-center text-white relative z-20 hover:bg-indigo-400 transition cursor-pointer group">
+                    <div class="font-medium text-lg">저축 (Savings)</div>
+                    <div class="text-xs text-indigo-100">적금, 예금, CMA</div>
+                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10 opacity-0 group-hover:opacity-100 transition">
+                        <span class="text-sm">안전성 (Safety)</span>
+                    </div>
+                </div>
+
+                <!-- Foundation (Insurance) -->
+                <div class="bg-indigo-900 p-8 rounded-b-2xl text-center text-white relative z-30 shadow-xl transform scale-105 border-4 border-white">
+                    <div class="font-bold text-xl mb-1 flex justify-center items-center gap-2">
+                        <i data-lucide="shield" class="w-5 h-5"></i> 보장 자산 (Insurance)
+                    </div>
+                    <div class="text-sm text-indigo-200 font-light">의료비, 사망 보장, 배상 책임</div>
+                    <div class="mt-4 bg-white bg-opacity-10 rounded-lg p-2 text-xs text-indigo-100">
+                        ⚠️ 기초가 없으면, 질병/사고 발생 시<br>
+                        모아둔 저축과 투자가 한순간에 무너집니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex gap-4 text-sm text-gray-600 justify-center">
+                <div class="flex items-center gap-1">
+                    <div class="w-3 h-3 bg-indigo-400 rounded-full"></div> 수익 추구
+                </div>
+                <div class="flex items-center gap-1">
+                    <div class="w-3 h-3 bg-indigo-300 rounded-full"></div> 자산 축적
+                </div>
+                <div class="flex items-center gap-1">
+                    <div class="w-3 h-3 bg-indigo-900 rounded-full"></div> <span class="highlight">자산 방어</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 2: History -->
+        <section class="fade-in-section my-20">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center">2</div>
+                <h2 class="text-2xl font-medium text-gray-800">보험의 역사 (History)</h2>
+            </div>
+
+            <div class="relative">
+                <div class="timeline-line hidden md:block"></div>
+                
+                <!-- History Item 1 -->
+                <div class="flex flex-col md:flex-row gap-4 mb-10 relative items-center">
+                    <div class="md:w-1/2 text-right order-2 md:order-1 pr-8">
+                        <div class="text-indigo-600 font-medium text-lg">BC 1750년경</div>
+                        <h3 class="text-xl text-gray-800 mt-1">함무라비 법전</h3>
+                        <p class="text-gray-500 font-light text-sm mt-2">
+                            인류 최초의 보험 형태. 무역상이 도둑을 맞으면<br>
+                            빚을 면제해주는 <u>'모험대차'</u> 제도가 기록됨.
+                        </p>
+                    </div>
+                    <div class="order-1 md:order-2 w-4 h-4 rounded-full bg-indigo-500 z-10 shadow-lg ring-4 ring-white"></div>
+                    <div class="md:w-1/2 order-3 pl-8"></div>
+                </div>
+
+                <!-- History Item 2 -->
+                <div class="flex flex-col md:flex-row gap-4 mb-10 relative items-center">
+                    <div class="md:w-1/2 text-right order-2 md:order-1 pr-8"></div>
+                    <div class="order-1 md:order-2 w-4 h-4 rounded-full bg-indigo-500 z-10 shadow-lg ring-4 ring-white"></div>
+                    <div class="md:w-1/2 order-3 pl-8">
+                        <div class="text-indigo-600 font-medium text-lg">1666년</div>
+                        <h3 class="text-xl text-gray-800 mt-1">런던 대화재</h3>
+                        <p class="text-gray-500 font-light text-sm mt-2">
+                            약 13,000채의 집이 불탄 사건.<br>
+                            이를 계기로 니콜라스 바본이<br>
+                            <u>최초의 화재보험사</u>를 설립.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- History Item 3 -->
+                <div class="flex flex-col md:flex-row gap-4 relative items-center">
+                    <div class="md:w-1/2 text-right order-2 md:order-1 pr-8">
+                        <div class="text-indigo-600 font-medium text-lg">현대 (Modern)</div>
+                        <h3 class="text-xl text-gray-800 mt-1">다양해진 리스크</h3>
+                        <p class="text-gray-500 font-light text-sm mt-2">
+                            생명, 화재뿐만 아니라<br>
+                            사이버 보안, 배상 책임, 여행 등<br>
+                            <span class="highlight">삶의 모든 영역</span>으로 확장.
+                        </p>
+                    </div>
+                    <div class="order-1 md:order-2 w-4 h-4 rounded-full bg-indigo-500 z-10 shadow-lg ring-4 ring-white"></div>
+                    <div class="md:w-1/2 order-3 pl-8"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 3: Decade Analysis (Deep Dive) -->
+        <section class="fade-in-section my-20">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center">3</div>
+                <h2 class="text-2xl font-medium text-gray-800">시대별 보험의 진화 (10년의 법칙)</h2>
+            </div>
+            
+            <p class="text-gray-500 font-light mb-8">
+                보험은 멈춰있지 않습니다. 시대의 욕구에 맞춰 <span class="highlight">끊임없이 진화</span>해왔습니다.
+            </p>
+
+            <div class="space-y-8">
+                
+                <!-- 1990s -->
+                <div class="card p-6 border-l-4 border-gray-400">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-medium text-gray-800">1990s : 양적 성장의 시대</h3>
+                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs">Human Touch</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-4 font-light">금융 시장 개방과 함께 보험 산업이 폭발적으로 성장하던 시기.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <span class="block text-indigo-600 mb-1">🏢 보험사의 시선</span>
+                            <span class="text-gray-600 font-light">"더 많이, 더 넓게"<br>조직 규모 확대와 인지 산업(설계사 조직) 중심의 영업.</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <span class="block text-indigo-600 mb-1">👤 고객의 시선</span>
+                            <span class="text-gray-600 font-light">"아는 사람 부탁으로"<br>상품 기능보다는 지연/학연에 의한 <u>의리 가입</u>이 주류.</span>
+                        </div>
+                    </div>
+                    <!-- Added Example Section -->
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wide">🔥 그때 그 상품</span>
+                        <div class="flex gap-2 mt-2 mb-2 flex-wrap">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700">🎓 교육보험</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700">🎗️ 암보험</span>
+                        </div>
+                        <p class="text-xs text-gray-500 font-light">
+                            "자녀 대학 등록금은 부모의 의무!"<br>
+                            자녀 사랑을 자극하는 마케팅과 함께 <u>교육보험</u>이 가정 필수품이던 시절.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2000s -->
+                <div class="card p-6 border-l-4 border-indigo-400">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-medium text-gray-800">2000s : 투자의 시대 (변액/종신)</h3>
+                        <span class="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-xs">Investment</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-4 font-light">저금리 기조의 시작. 보험에 '투자' 기능이 결합되기 시작함.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <span class="block text-indigo-600 mb-1">🏢 보험사의 시선</span>
+                            <span class="text-gray-600 font-light">"자산 관리의 시작"<br>변액 보험, 유니버셜 기능 도입. <u>수익률 마케팅</u> 본격화.</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <span class="block text-indigo-600 mb-1">👤 고객의 시선</span>
+                            <span class="text-gray-600 font-light">"보장도 받고 돈도 불리고"<br>재테크 수단으로서 보험을 인식하기 시작.</span>
+                        </div>
+                    </div>
+                    <!-- Added Example Section -->
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wide">🔥 그때 그 상품</span>
+                        <div class="flex gap-2 mt-2 mb-2 flex-wrap">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700">📈 변액유니버셜</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700">🏥 CI보험</span>
+                        </div>
+                        <p class="text-xs text-gray-500 font-light">
+                            "아프면 큰일 난다(CI) + 주식으로 돈 불리자(변액)"<br>
+                            <u>고액 보장과 투자 수익</u>을 동시에 노리는 상품들이 대거 등장.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2010s -->
+                <div class="card p-6 border-l-4 border-indigo-600">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-medium text-gray-800">2010s : 가성비와 통합의 시대</h3>
+                        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs">Cost Efficiency</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-4 font-light">실손의료비 표준화 및 GA(법인대리점)의 성장으로 비교 분석이 가능해짐.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <span class="block text-indigo-600 mb-1">🏢 보험사의 시선</span>
+                            <span class="text-gray-600 font-light">"통합 보장 솔루션"<br>하나의 증권에 담는 통합 보험 & 저해지 환급형(저렴한 보험료) 개발.</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <span class="block text-indigo-600 mb-1">👤 고객의 시선</span>
+                            <span class="text-gray-600 font-light">"가격 비교는 필수"<br>무조건 싼 것보다는 <u>가성비(가격 대비 성능)</u>를 꼼꼼히 따짐.</span>
+                        </div>
+                    </div>
+                    <!-- Added Example Section -->
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wide">🔥 그때 그 상품</span>
+                        <div class="flex gap-2 mt-2 mb-2 flex-wrap">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700">🧾 실손의료비(표준화)</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700">🦷 치아/간병보험</span>
+                        </div>
+                        <p class="text-xs text-gray-500 font-light">
+                            "국민 필수템 등극"<br>
+                            제2의 건강보험이라 불리는 <u>실손보험</u>과 틈새시장을 노린 치아/간병 보험의 성장.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2020s -->
+                <div class="card p-6 border-l-4 border-indigo-800 bg-gradient-to-br from-white to-indigo-50">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-medium text-gray-800">2020s~ : 헬스케어 & 초개인화</h3>
+                        <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-xs shadow-sm">Digital Care</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-4 font-light">AI, 빅데이터, 마이데이터 시대로의 진입. '사후 보상'에서 '사전 예방'으로.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                        <div class="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm">
+                            <span class="block text-indigo-600 mb-1">🏢 보험사의 시선</span>
+                            <span class="text-gray-600 font-light">"당신의 건강 코치"<br>걷기만 해도 보험료 할인(건강증진형), 유병자 간편 가입 확대.</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm">
+                            <span class="block text-indigo-600 mb-1">👤 고객의 시선</span>
+                            <span class="text-gray-600 font-light">"나에게 딱 맞는 핏"<br>필요한 보장만 골라 담는 미니 보험, <u>앱으로 관리하는 건강</u>.</span>
+                        </div>
+                    </div>
+                    <!-- Added Example Section -->
+                    <div class="mt-4 pt-4 border-t border-indigo-100">
+                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-wide">🔥 요즘 뜨는 상품</span>
+                        <div class="flex gap-2 mt-2 mb-2 flex-wrap">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white text-indigo-600 border border-indigo-200">📱 미니보험(원데이)</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white text-indigo-600 border border-indigo-200">🐶 펫보험</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white text-indigo-600 border border-indigo-200">🚗 UBI(운전습관연계)</span>
+                        </div>
+                        <p class="text-xs text-gray-500 font-light">
+                            "필요할 때만 짧게, 내 생활 방식대로"<br>
+                            등산할 때만 켜는 보험, 탄 만큼 내는 차 보험 등 <u>라이프스타일 밀착형</u> 상품.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Chapter 4: Planner's Evolution (New Section) -->
+        <section class="fade-in-section my-20">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center">4</div>
+                <h2 class="text-2xl font-medium text-gray-800">우리는 어떻게 변해왔는가? (Identity Shift)</h2>
+            </div>
+            
+            <p class="text-gray-500 font-light mb-8">
+                시대가 변하면서 우리의 명칭과 역할도 달라졌습니다.<br>
+                단순한 '판매'를 넘어 <span class="highlight">고객의 삶을 기획하는 파트너</span>가 되었습니다.
+            </p>
+
+            <div class="grid grid-cols-1 gap-6">
+                <!-- 1990s: Solicitor -->
+                <div class="flex flex-col md:flex-row gap-4 items-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-full md:w-1/4 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-4">
+                        <span class="text-2xl font-light text-gray-400">1990s</span>
+                        <div class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs mt-2">생활 설계사 / 모집인</div>
+                    </div>
+                    <div class="w-full md:w-3/4 pl-0 md:pl-4">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">"정(情)과 인맥의 시대"</h3>
+                        <p class="text-sm text-gray-500 font-light leading-relaxed">
+                            <i data-lucide="users" class="inline w-4 h-4 text-indigo-400 mr-1"></i>
+                            이웃집 아주머니 같은 친근함이 무기였습니다.<br>
+                            상품의 논리보다는 <u>"하나 들어줘"</u>라는 관계 중심의 영업이 통했던 시기입니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2000s: Financial Planner -->
+                <div class="flex flex-col md:flex-row gap-4 items-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-full md:w-1/4 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-4">
+                        <span class="text-2xl font-light text-indigo-300">2000s</span>
+                        <div class="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-xs mt-2">FC / FP (재무설계사)</div>
+                    </div>
+                    <div class="w-full md:w-3/4 pl-0 md:pl-4">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">"전문성과 스타일의 시대"</h3>
+                        <p class="text-sm text-gray-500 font-light leading-relaxed">
+                            <i data-lucide="briefcase" class="inline w-4 h-4 text-indigo-400 mr-1"></i>
+                            남성 설계사의 유입과 외국계 보험사의 진출.<br>
+                            노트북과 정장을 갖추고 <u>재무 설계(Financial Planning)</u> 개념을 도입하여 니즈를 환기했습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2010s: Consultant -->
+                <div class="flex flex-col md:flex-row gap-4 items-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-full md:w-1/4 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-100 pb-4 md:pb-0 md:pr-4">
+                        <span class="text-2xl font-light text-indigo-400">2010s</span>
+                        <div class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs mt-2">보험 분석가 / 컨설턴트</div>
+                    </div>
+                    <div class="w-full md:w-3/4 pl-0 md:pl-4">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">"객관적 분석의 시대"</h3>
+                        <p class="text-sm text-gray-500 font-light leading-relaxed">
+                            <i data-lucide="bar-chart-2" class="inline w-4 h-4 text-indigo-400 mr-1"></i>
+                            GA(법인대리점)의 성장과 정보의 홍수.<br>
+                            여러 회사의 상품을 <u>비교 분석</u>하고, 기존 증권을 리모델링해 주는 능력이 핵심 경쟁력이었습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2020s: Life Partner -->
+                <div class="flex flex-col md:flex-row gap-4 items-center bg-indigo-600 p-6 rounded-2xl shadow-lg text-white transform hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-full md:w-1/4 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-indigo-500 pb-4 md:pb-0 md:pr-4">
+                        <span class="text-2xl font-light text-indigo-200">2020s~</span>
+                        <div class="bg-white text-indigo-600 px-3 py-1 rounded-full text-xs mt-2 font-medium">Digital Life Coach</div>
+                    </div>
+                    <div class="w-full md:w-3/4 pl-0 md:pl-4">
+                        <h3 class="text-lg font-medium text-white mb-2">"휴먼 터치와 디지털의 융합"</h3>
+                        <p class="text-sm text-indigo-100 font-light leading-relaxed">
+                            <i data-lucide="heart-handshake" class="inline w-4 h-4 text-indigo-200 mr-1"></i>
+                            단순 정보는 AI가 더 잘 압니다. 여러분은 무엇을 해야 할까요?<br>
+                            고객의 <u>감정을 이해(Empathy)</u>하고, 헬스케어부터 은퇴, 상속까지 <u>생애 전반을 코칭</u>하는 대체 불가능한 파트너입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 5: Spirit (Renumbered) -->
+        <section class="fade-in-section my-16">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center">5</div>
+                <h2 class="text-2xl font-medium text-gray-800">상부상조 정신 (Mutual Aid)</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card p-6">
+                    <div class="text-center mb-4">
+                        <i data-lucide="users" class="w-10 h-10 text-indigo-500 mx-auto mb-2"></i>
+                        <h3 class="text-lg font-medium">One for All, All for One</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm font-light text-center leading-relaxed">
+                        만인(All)이 일인(One)을 위해 돕는 구조.<br>
+                        보험료는 단순한 소비가 아니라,<br>
+                        <u>공동체의 안전망을 구축하는 기금</u>입니다.
+                    </p>
+                </div>
+                
+                <div class="card p-6 bg-indigo-50 border border-indigo-100">
+                    <div class="text-center mb-4">
+                        <i data-lucide="coins" class="w-10 h-10 text-indigo-500 mx-auto mb-2"></i>
+                        <h3 class="text-lg font-medium">현대적 해석 : 크라우드 펀딩</h3>
+                    </div>
+                     <p class="text-gray-600 text-sm font-light text-center leading-relaxed">
+                        여러 사람이 조금씩 돈을 모아<br>
+                        큰 가치를 만들어내는 것.<br>
+                        보험은 <span class="highlight">가장 체계화된 펀딩 시스템</span>입니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- [NEW] Section: The Science -->
+        <section class="fade-in-section my-20">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="bg-blue-100 p-2 rounded-full">
+                    <i data-lucide="calculator" class="w-5 h-5 text-blue-600"></i>
+                </div>
+                <h2 class="text-2xl font-medium text-gray-800">보험은 과학이다 (The Science)</h2>
+            </div>
+
+            <p class="text-gray-500 font-light mb-8">
+                적은 돈을 내고 어떻게 큰돈을 받을 수 있을까요? 마법이 아닙니다. <span class="highlight">통계와 확률</span>입니다.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card p-6 border border-gray-100">
+                    <h3 class="text-lg font-medium text-gray-800 mb-3 flex items-center gap-2">
+                        🎲 대수의 법칙
+                        <span class="text-xs font-light text-gray-400">(Law of Large Numbers)</span>
+                    </h3>
+                    <p class="text-sm text-gray-600 font-light leading-relaxed mb-4">
+                        동전을 10번 던지면 앞면이 7번 나올 수도 있습니다(예측 불가).<br>
+                        하지만 <strong>10만 번</strong> 던지면 앞면 확률은 정확히 <strong>50%</strong>에 가까워집니다.<br>
+                        <br>
+                        보험사는 수많은 통계 데이터를 통해<br>
+                        <u>"올해 몇 명이 아플지"</u> 정확히 예측합니다.
+                    </p>
+                    <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                        <div class="bg-indigo-500 h-full w-1/2"></div>
+                    </div>
+                    <div class="text-xs text-center mt-1 text-gray-400">오차 범위 감소</div>
+                </div>
+
+                <div class="card p-6 border border-gray-100">
+                    <h3 class="text-lg font-medium text-gray-800 mb-3 flex items-center gap-2">
+                        ⚖️ 수지상등의 원칙
+                        <span class="text-xs font-light text-gray-400">(Principle of Equivalence)</span>
+                    </h3>
+                    <p class="text-sm text-gray-600 font-light leading-relaxed mb-4">
+                        들어오는 돈(보험료 총액)과 나가는 돈(보험금 총액)은 같아야 합니다.<br>
+                        <br>
+                        <span class="text-indigo-600 font-medium">내가 낸 돈 = 나를 위한 저축? (X)</span><br>
+                        <span class="text-indigo-600 font-medium">내가 낸 돈 = 위험한 누군가를 위한 기금 (O)</span><br>
+                        <br>
+                        결국 내가 위험해졌을 때, 타인의 돈이 나를 돕게 됩니다.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-6 p-4 bg-indigo-50 rounded-xl flex items-start gap-3">
+                <i data-lucide="lightbulb" class="w-5 h-5 text-indigo-600 mt-1 flex-shrink-0"></i>
+                <p class="text-sm text-gray-700">
+                    <strong>교육 포인트:</strong> 고객이 "내 돈 돌려줘"라고 할 때, 이 원리를 설명해 주세요. 보험은 '내 계좌에 쌓는 저축'이 아니라 <u>'공동의 위험 기금에 참여하는 멤버십 비용'</u>입니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- [NEW] Final Check: Interactive Quiz -->
+        <section class="fade-in-section my-20">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="bg-green-100 p-2 rounded-full">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 text-green-600"></i>
+                </div>
+                <h2 class="text-2xl font-medium text-gray-800">핵심 요약 OX 퀴즈</h2>
+            </div>
+
+            <p class="text-gray-500 font-light mb-8">
+                오늘 배운 내용을 딱 3문제로 정리해 봅시다. (클릭해서 정답 확인)
+            </p>
+
+            <div class="space-y-4">
+                <!-- Quiz 1 -->
+                <div class="bg-white p-5 rounded-xl border border-gray-200 cursor-pointer hover:shadow-md transition group" onclick="this.classList.toggle('active')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-medium text-gray-800">Q1. 보험은 '비용'이 아니라 '자산'이다?</h3>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-hover:text-indigo-500 transition-transform duration-300"></i>
+                    </div>
+                    <div class="hidden mt-4 pt-4 border-t border-gray-100 animate-fade-in">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-green-600 font-bold text-lg">O (정답)</span>
+                            <span class="text-gray-800 font-medium">엄밀히 말해 '보장 자산(Protection Asset)'입니다.</span>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-lg text-sm text-gray-600 leading-relaxed">
+                            <p class="mb-2 font-medium text-indigo-700">💡 왜 '자산'일까요?</p>
+                            <ul class="list-disc list-inside space-y-1 pl-1">
+                                <li><strong>방어의 가치:</strong> 열심히 모은 1억 원(저축)이 암 치료비로 다 나가면 내 자산은 '0원'이 됩니다. 하지만 보험이 있다면 1억 원을 그대로 지킬 수 있습니다.</li>
+                                <li><strong>현금화 기능:</strong> 저축성 보험이나 해지환급금처럼 시간이 지나면 목돈이 되어 돌아오는 기능도 있습니다.</li>
+                                <li>따라서 보험은 사라지는 돈이 아니라, <span class="highlight">내 재산을 지키는 가장 기초적인 자산</span>입니다.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz 2 -->
+                <div class="bg-white p-5 rounded-xl border border-gray-200 cursor-pointer hover:shadow-md transition group" onclick="this.classList.toggle('active')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-medium text-gray-800">Q2. 2020년대 설계사의 핵심 역량은 '지인 영업'이다?</h3>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-hover:text-indigo-500 transition-transform duration-300"></i>
+                    </div>
+                    <div class="hidden mt-4 pt-4 border-t border-gray-100 animate-fade-in">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-red-500 font-bold text-lg">X (오답)</span>
+                            <span class="text-gray-800 font-medium">이제는 '전문성'과 '디지털 역량'의 시대입니다.</span>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg text-sm text-gray-600 leading-relaxed">
+                            <p class="mb-2 font-medium text-red-700">💡 왜 지인 영업만으로는 안 될까요?</p>
+                            <ul class="list-disc list-inside space-y-1 pl-1">
+                                <li><strong>한계성:</strong> 지인은 언젠가 고갈됩니다. 평생 영업하려면 새로운 고객을 창출해야 합니다.</li>
+                                <li><strong>스마트한 고객:</strong> 고객은 이미 인터넷으로 다 비교해보고 만납니다. "하나 들어줘" 식의 감정 호소는 통하지 않습니다.</li>
+                                <li>이제는 헬스케어, 은퇴 설계 등 <span class="highlight">고객의 인생을 코칭해 줄 수 있는 전문가</span>만이 살아남습니다.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz 3 -->
+                <div class="bg-white p-5 rounded-xl border border-gray-200 cursor-pointer hover:shadow-md transition group" onclick="this.classList.toggle('active')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-medium text-gray-800">Q3. 보험의 원리는 '대수의 법칙'에 기반한다?</h3>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-hover:text-indigo-500 transition-transform duration-300"></i>
+                    </div>
+                    <div class="hidden mt-4 pt-4 border-t border-gray-100 animate-fade-in">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-green-600 font-bold text-lg">O (정답)</span>
+                            <span class="text-gray-800 font-medium">보험은 철저한 '통계 과학'입니다.</span>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-lg text-sm text-gray-600 leading-relaxed">
+                            <p class="mb-2 font-medium text-indigo-700">💡 대수의 법칙이란?</p>
+                            <ul class="list-disc list-inside space-y-1 pl-1">
+                                <li>주사위를 몇 번 던지면 알 수 없지만, <strong>수만 번 던지면</strong> 각 숫자가 나올 확률은 정확히 1/6이 됩니다.</li>
+                                <li>마찬가지로, 한 개인의 사고는 예측 불가능하지만, <strong>수많은 사람의 통계</strong>는 정확히 예측할 수 있습니다.</li>
+                                <li>이 과학적 원리 덕분에 보험사는 망하지 않고 여러분에게 약속된 보험금을 지급할 수 있는 것입니다.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .active .hidden { display: block; }
+                .active i { transform: rotate(180deg); }
+            </style>
+        </section>
+
+        <!-- Closing & Next Preview -->
+        <section class="fade-in-section py-12 text-center border-t border-gray-200 mt-20 bg-gray-50 rounded-t-3xl -mx-6 px-6">
+            <h3 class="text-2xl text-gray-800 font-medium mb-4">Day 1, 첫 시간을 마치며</h3>
+            <p class="text-gray-500 font-light mb-8 max-w-md mx-auto">
+                우리는 단순히 상품을 파는 사람이 아닙니다.<br>
+                고객의 불확실한 미래에<br>
+                <span class="text-indigo-600 font-medium">확실한 약속</span>을 선물하는 전문가입니다.
+            </p>
+
+            <!-- Next Class Teaser -->
+            <div class="max-w-sm mx-auto bg-white p-4 rounded-xl shadow-sm border border-indigo-100 mb-8 text-left">
+                <div class="text-xs font-bold text-indigo-500 uppercase tracking-wide mb-1">Coming Up Next</div>
+                <div class="font-medium text-gray-800">2교시 예고 : 생명보험 vs 손해보험</div>
+                <p class="text-xs text-gray-500 mt-2 font-light">
+                    "죽어야 받는 돈 vs 다쳐야 받는 돈?"<br>
+                    두 보험의 결정적 차이와 <u>업권별 특징 비교</u>가 이어집니다.
+                </p>
+            </div>
+
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="px-8 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition shadow-lg text-sm font-medium">
+                맨 위로 돌아가기
+            </button>
+            
+            <!-- Creator Credit (Footer) -->
+            <div class="mt-20 pt-10 border-t border-gray-200">
+                <p class="text-xs text-gray-400 font-light tracking-wide">
+                    기획 및 제작 : (주)글로벌금융판매 토탈인스총괄 이승훈 실장
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // 아이콘 초기화
+        lucide.createIcons();
+
+        // 스크롤 애니메이션 옵저버
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // 한 번만 실행
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
