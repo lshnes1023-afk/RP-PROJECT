@@ -19,7 +19,7 @@ navItems.forEach((item) => {
 function filterScenarios(value) {
   const query = value.trim().toLowerCase();
 
-  document.querySelectorAll(".scenario-card").forEach((card) => {
+  document.querySelectorAll(".scenario-card, .featured-rp").forEach((card) => {
     const target = card.dataset.title?.toLowerCase() ?? "";
     card.hidden = query.length > 0 && !target.includes(query);
   });
